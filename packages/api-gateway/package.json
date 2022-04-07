@@ -1,0 +1,28 @@
+{
+  "name": "api-gateway",
+  "version": "0.0.0",
+  "description": "API gateway",
+  "keywords": [
+    "gateway"
+  ],
+  "author": "guilhermeaw <guilherme.w@universo.univates.br>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/api-gateway.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.4",
+    "morgan": "^1.10.0"
+  },
+  "type": "module"
+}
