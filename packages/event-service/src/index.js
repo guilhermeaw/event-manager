@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/teste', (req, res) => {
   return res.json({message: 'event-service working'});
 });
 
