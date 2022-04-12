@@ -1,0 +1,51 @@
+{
+  "name": "user-service",
+  "version": "0.0.0",
+  "description": "Serviço de controle de usuários e sessões",
+  "keywords": [
+    "users",
+    "sessions"
+  ],
+  "author": "guilhermeaw <guilherme.w@universo.univates.br>",
+  "homepage": "https://github.com/guilhermeaw/event-manager-backend#readme",
+  "license": "ISC",
+  "main": "lib/user-service.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermeaw/event-manager-backend.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --no-notify --ignore-watch node_modules src/shared/server.ts",
+    "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js",
+    "migration:run": "typeorm-ts-node-commonjs -d src/database/ormconfig.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d src/database/ormconfig.ts migration:revert"
+  },
+  "bugs": {
+    "url": "https://github.com/guilhermeaw/event-manager-backend/issues"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.6.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
