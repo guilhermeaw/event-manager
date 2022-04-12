@@ -8,5 +8,25 @@ export const routes = [
         [`^/api/events`]: '',
       },
     }
+  },
+  {
+    url: 'users',
+    proxy: {
+      target: "http://localhost:3002",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/api/users`]: '',
+      },
+    }
+  },
+  {
+    url: 'sessions',
+    proxy: {
+      target: "http://localhost:3002",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/api/sessions`]: '',
+      },
+    }
   }
 ];
