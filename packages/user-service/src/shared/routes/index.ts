@@ -1,9 +1,9 @@
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+
+import usersRouter from '@modules/users/routes/users.routes';
 
 const routes = Router();
 
-routes.get('/users', (request: Request, response: Response) => {
-  return response.json({ message: 'opa' });
-});
+routes.use('/users', usersRouter);
 
 export default routes;

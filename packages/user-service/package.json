@@ -18,8 +18,8 @@
     "build": "tsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --no-notify --ignore-watch node_modules src/shared/server.ts",
     "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js",
-    "migration:run": "typeorm-ts-node-commonjs -d src/database/ormconfig.ts migration:run",
-    "migration:revert": "typeorm-ts-node-commonjs -d src/database/ormconfig.ts migration:revert"
+    "migration:run": "typeorm-ts-node-commonjs -d src/shared/database/ormconfig.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d src/shared/database/ormconfig.ts migration:revert"
   },
   "bugs": {
     "url": "https://github.com/guilhermeaw/event-manager-backend/issues"
@@ -41,6 +41,10 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express": "^4.17.3"
+    "class-transformer": "^0.5.1",
+    "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.7.3",
+    "typeorm": "0.3.5"
   }
 }

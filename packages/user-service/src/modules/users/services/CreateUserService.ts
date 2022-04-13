@@ -11,10 +11,14 @@ interface IRequest {
 }
 
 export default class CreateUserService {
-  constructor(
-    private usersRepository: UsersRepository,
-    private hashProvider: HashProvider,
-  ) {}
+  private usersRepository: UsersRepository;
+
+  private hashProvider: HashProvider;
+
+  constructor() {
+    this.usersRepository = new UsersRepository();
+    this.hashProvider = new HashProvider();
+  }
 
   public async execute({
     name,
@@ -22,10 +26,18 @@ export default class CreateUserService {
     password,
     cpf,
   }: IRequest): Promise<Omit<User, 'password'>> {
-    const userExists = await this.usersRepository.findByEmail(email);
+    const userAlreadyExistsWithEmail = await this.usersRepository.findByEmail(
+      email,
+    );
 
-    if (userExists) {
+    if (userAlreadyExistsWithEmail) {
       throw new AppError('O e-mail informado já se encontra em uso.');
+    }
+
+    const userAlreadyExistsWithCpf = await this.usersRepository.findByCpf(cpf);
+
+    if (userAlreadyExistsWithCpf) {
+      throw new AppError('O CPF informado já se encontra em uso.');
     }
 
     const hashedPassword = await this.hashProvider.generateHash(password);
