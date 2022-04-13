@@ -36,7 +36,9 @@
     }],
     "prettier/prettier": "error",
     "import/no-unresolved": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"]
   },
   "settings": {
     "import/resolver": {
