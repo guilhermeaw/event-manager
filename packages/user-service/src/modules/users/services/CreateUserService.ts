@@ -1,7 +1,7 @@
 import AppError from '@shared/errors/AppError';
 import User from '@modules/users/entities/User';
 import UsersRepository from '@modules/users/repositories/UsersRepository';
-import HashProvider from '@modules/users/providers/BCryptHashProvider';
+import BCryptHashProvider from '@modules/users/providers/BCryptHashProvider';
 
 interface IRequest {
   name: string;
@@ -13,11 +13,11 @@ interface IRequest {
 export default class CreateUserService {
   private usersRepository: UsersRepository;
 
-  private hashProvider: HashProvider;
+  private hashProvider: BCryptHashProvider;
 
   constructor() {
     this.usersRepository = new UsersRepository();
-    this.hashProvider = new HashProvider();
+    this.hashProvider = new BCryptHashProvider();
   }
 
   public async execute({
