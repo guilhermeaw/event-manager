@@ -17,7 +17,7 @@
     "lib"
   ],
   "scripts": {
-    "start": "node src/index.js"
+    "dev:server": "node src/index.js"
   },
   "dependencies": {
     "express": "^4.17.3"

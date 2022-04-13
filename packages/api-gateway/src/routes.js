@@ -5,7 +5,7 @@ export const routes = [
       target: "http://localhost:3001",
       changeOrigin: true,
       pathRewrite: {
-        [`^/api`]: '',
+        [`^/api/events`]: '',
       },
     }
   },
@@ -15,7 +15,7 @@ export const routes = [
       target: "http://localhost:3002",
       changeOrigin: true,
       pathRewrite: {
-        [`^/api`]: '',
+        [`^/api/users`]: '',
       },
     }
   },
@@ -25,7 +25,7 @@ export const routes = [
       target: "http://localhost:3002",
       changeOrigin: true,
       pathRewrite: {
-        [`^/api`]: '',
+        [`^/api/sessions`]: '',
       },
     }
   }

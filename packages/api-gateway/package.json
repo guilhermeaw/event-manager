@@ -9,15 +9,8 @@
   "homepage": "",
   "license": "ISC",
   "main": "lib/api-gateway.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
   "scripts": {
-    "start": "node --experimental-specifier-resolution=node src/index.js"
+    "dev:server": "node --experimental-specifier-resolution=node src/index.js"
   },
   "dependencies": {
     "express": "^4.17.3",
