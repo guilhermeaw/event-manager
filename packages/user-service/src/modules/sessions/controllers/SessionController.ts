@@ -1,3 +1,4 @@
+import { instanceToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import CreateSessionService from '../services/CreateSessionService';
@@ -11,6 +12,6 @@ export default class SessionController {
       password,
     });
 
-    return response.json({ user, token });
+    return response.json({ user: instanceToPlain(user), token });
   }
 }

@@ -1,3 +1,4 @@
+import { instanceToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import CreateUserService from '../services/CreateUserService';
@@ -13,6 +14,6 @@ export default class UsersController {
       password,
     });
 
-    return response.json(user);
+    return response.json(instanceToPlain(user));
   }
 }
