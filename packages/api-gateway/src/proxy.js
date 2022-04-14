@@ -14,8 +14,6 @@ export const setupProxies = (app, routes) => {
       }
     }
 
-    const proxy = createProxyMiddleware({ ...route.proxy, onProxyReq: restream });
-    
-    app.use(`/api/${route.url}`, proxy);
+    app.use(`/api/${route.url}`, createProxyMiddleware({ ...route.proxy, onProxyReq: restream }));
   });
 }
