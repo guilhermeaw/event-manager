@@ -1,7 +1,7 @@
 import { instanceToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
-import { UserRole } from '../entities/User';
 
+import { UserRole } from '../entities/User';
 import CreateUserService from '../services/CreateUserService';
 
 export default class UsersController {
