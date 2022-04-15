@@ -7,6 +7,7 @@ import {setupProxies} from './proxy';
 
 const app = express()
 
+// testa conexão git
 app.use(express.json());
 
 setupLogging(app);
