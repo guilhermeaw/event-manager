@@ -1,9 +1,9 @@
 {
-  "name": "email-service",
+  "name": "certificate-service",
   "version": "0.0.0",
-  "description": "Serviço de envio de e-mails",
+  "description": "Serviço de emissão e validação de certificados",
   "keywords": [
-    "email"
+    "certificate"
   ],
   "author": "guilhermeaw <guilherme.w@universo.univates.br>",
   "homepage": "https://github.com/guilhermeaw/event-manager-backend#readme",
