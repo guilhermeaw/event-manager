@@ -1,0 +1,19 @@
+{
+  "name": "email-service",
+  "version": "0.0.0",
+  "description": "Serviço de envio de e-mails",
+  "keywords": [
+    "email"
+  ],
+  "author": "guilhermeaw <guilherme.w@universo.univates.br>",
+  "homepage": "https://github.com/guilhermeaw/event-manager-backend#readme",
+  "license": "ISC",
+  "main": "lib/email-service.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermeaw/event-manager-backend.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}
