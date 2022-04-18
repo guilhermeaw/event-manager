@@ -14,7 +14,7 @@ export default class Event {
   @Column()
   description: string;
 
-  @Column()
+  @Column({ type: 'timestamp' })
   date: Timestamp;
 
   @Column()
