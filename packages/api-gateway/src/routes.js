@@ -19,14 +19,4 @@ export const routes = [
       },
     }
   },
-  {
-    url: 'sessions',
-    proxy: {
-      target: "http://localhost:3002",
-      changeOrigin: true,
-      pathRewrite: {
-        [`^/api/sessions`]: '',
-      },
-    }
-  }
 ];
