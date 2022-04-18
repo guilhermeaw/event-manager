@@ -38,7 +38,8 @@
     "import/no-unresolved": "off",
     "no-useless-constructor": "off",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"]
+    "@typescript-eslint/no-shadow": ["error"],
+    "camelcase": "off"
   },
   "settings": {
     "import/resolver": {
