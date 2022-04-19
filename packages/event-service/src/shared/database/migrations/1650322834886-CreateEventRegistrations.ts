@@ -18,6 +18,11 @@ export class CreateEventRegistrations1650322834886
             type: 'int',
             isPrimary: true,
           },
+          {
+            name: 'status',
+            type: 'enum',
+            enum: ['pending', 'checking', 'canceled'],
+          },
         ],
       }),
     );
