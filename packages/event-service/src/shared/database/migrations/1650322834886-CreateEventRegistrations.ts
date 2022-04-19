@@ -29,6 +29,6 @@ export class CreateEventRegistrations1650322834886
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('event_registrations');
+    await queryRunner.dropTable('event_registrations');
   }
 }

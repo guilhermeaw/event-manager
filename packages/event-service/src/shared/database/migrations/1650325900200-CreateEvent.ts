@@ -41,7 +41,7 @@ export class CreateEvent1650325900200 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-      queryRunner.dropTable('event');
+      await queryRunner.dropTable('event');
     }
 
 }
