@@ -1,4 +1,3 @@
-import AppError from '@shared/errors/AppError';
 import Event from '@modules/events/entities/Event';
 import EventsRepository from '@modules/events/repositories/EventsRepository';
 import { Timestamp } from 'typeorm';

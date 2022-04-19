@@ -18,12 +18,17 @@ export class CreateEventRegistrations1650322834886
             type: 'int',
             isPrimary: true,
           },
+          {
+            name: 'status',
+            type: 'enum',
+            enum: ['pending', 'checking', 'canceled'],
+          },
         ],
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    queryRunner.dropTable('event_registrations');
+    await queryRunner.dropTable('event_registrations');
   }
 }
