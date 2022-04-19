@@ -14,12 +14,15 @@ const theme = createTheme({
     success: {
       main: '#51B853',
     },
+    background: {
+      default: '#F5F8FA',
+    },
   },
   typography: {
     fontFamily: 'Barlow, sans-serif',
     h1: {
       fontWeight: 600,
-      fontSize: '2rem',
+      fontSize: '3rem',
     },
     h2: {
       fontWeight: 600,
