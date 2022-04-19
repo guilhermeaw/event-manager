@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import EtherealEmailProvider from 'providers/EmailProvider/implementations/EtherealEmailProvider';
+import GoogleEmailProvider from 'providers/EmailProvider/implementations/GoogleEmailProvider';
 
 export default class EmailController {
   public async sendEmail(
@@ -9,7 +9,7 @@ export default class EmailController {
   ): Promise<Response> {
     const { to, subject, templateData } = request.body;
 
-    const emailProvider = new EtherealEmailProvider();
+    const emailProvider = new GoogleEmailProvider();
 
     await emailProvider.sendMail({
       to,
