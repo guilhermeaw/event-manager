@@ -1,7 +1,16 @@
-import Teste from './components/test';
+import { ThemeProvider } from 'styled-components';
 
-const App = () => {
-  return <Teste />;
-};
+import { Routes } from './routes';
+
+import GlobalStyles from './styles/global';
+import theme from './styles/theme';
+
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <Routes />
+
+    <GlobalStyles />
+  </ThemeProvider>
+);
 
 export default App;
