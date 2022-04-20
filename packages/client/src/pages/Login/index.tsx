@@ -44,6 +44,7 @@ export const LoginPage = () => {
             sx={{ background: '#fff' }}
             margin="dense"
             inputRef={emailInput}
+            required
           />
 
           <TextField
@@ -52,6 +53,7 @@ export const LoginPage = () => {
             sx={{ background: '#fff' }}
             margin="dense"
             inputRef={passwordInput}
+            required
           />
 
           <Button
