@@ -1,29 +1,18 @@
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import { Header } from '../../components/Header';
 
 import { RouterLink } from '../../components/Link';
+import { MainContainer } from '../../components/MainContainer';
 import { useAuth } from '../../store/Auth';
-
-import * as S from './styles';
 
 export const HomePage = () => {
   const { user } = useAuth();
 
   return (
     <>
-      <S.Header>
-        <Container maxWidth="xl">
-          <Typography variant="h1" fontSize="1.5rem">
-            Event Manager
-          </Typography>
-        </Container>
-      </S.Header>
-      <Container
-        maxWidth="xl"
-        sx={({ palette }) => ({
-          backgroundColor: palette.background.default,
-          minHeight: 'calc(100vh - 4rem)',
-        })}
-      >
+      <Header />
+
+      <MainContainer>
         <Typography variant="h2">
           Aqui você encontra os melhores eventos
         </Typography>
@@ -34,10 +23,10 @@ export const HomePage = () => {
 
         <Button variant="contained">
           <RouterLink to={user ? '/events' : '/login'}>
-            Ir para o login
+            Descobrir eventos
           </RouterLink>
         </Button>
-      </Container>
+      </MainContainer>
     </>
   );
 };
