@@ -25,7 +25,7 @@ const LoginPage = () => {
     }
 
     await signIn({ email, password });
-    navigate('/');
+    navigate('/events');
   };
 
   return (

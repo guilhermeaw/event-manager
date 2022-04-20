@@ -1,6 +1,7 @@
-import { Card, Typography } from '@mui/material';
+import { Button, Card, Typography } from '@mui/material';
 
 import { Header } from '../../components/Header';
+import { RouterLink } from '../../components/Link';
 import { MainContainer } from '../../components/MainContainer';
 
 const EventsPage = () => {
@@ -39,6 +40,28 @@ const EventsPage = () => {
       <Header />
 
       <MainContainer>
+        <Button fullWidth variant="outlined" sx={{ margin: '1rem 0' }}>
+          <RouterLink to="/my-events">Acessar meus eventos</RouterLink>
+        </Button>
+
+        <Typography variant="h3">Em andamento</Typography>
+        <Typography variant="subtitle1">
+          Listagem dos eventos em andamento
+        </Typography>
+
+        {nextEvents.map(event => (
+          <Card sx={{ padding: '2rem', margin: '1rem 0' }}>
+            <Typography>{event.title}</Typography>
+            <Typography>{event.description}</Typography>
+            <img
+              src={event.img}
+              alt="imagem do evento"
+              height="64px"
+              width="64px"
+            />
+          </Card>
+        ))}
+
         <Typography variant="h3">Próximos eventos</Typography>
         <Typography variant="subtitle1">
           Listagem dos próximos eventos organizados pela equipe Event Manager
