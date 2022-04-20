@@ -50,7 +50,7 @@ const EventsPage = () => {
         </Typography>
 
         {nextEvents.map(event => (
-          <Card sx={{ padding: '2rem', margin: '1rem 0' }}>
+          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
             <Typography>{event.title}</Typography>
             <Typography>{event.description}</Typography>
             <img
@@ -68,7 +68,7 @@ const EventsPage = () => {
         </Typography>
 
         {nextEvents.map(event => (
-          <Card sx={{ padding: '2rem', margin: '1rem 0' }}>
+          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
             <Typography>{event.title}</Typography>
             <Typography>{event.description}</Typography>
             <img
@@ -86,7 +86,7 @@ const EventsPage = () => {
         </Typography>
 
         {lastEvents.map(event => (
-          <Card sx={{ padding: '2rem', margin: '1rem 0' }}>
+          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
             <Typography>{event.title}</Typography>
             <Typography>{event.description}</Typography>
             <img

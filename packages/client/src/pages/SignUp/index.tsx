@@ -1,31 +1,35 @@
 import { FormEvent, RefObject, useRef } from 'react';
-import { Grid, TextField, Typography, Button } from '@mui/material';
+import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+import { RouterLink } from '../../components/Link';
+import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
 
-import { useAuth } from '../../store/Auth';
-import { RouterLink } from '../../components/Link';
-
-const LoginPage = () => {
+const SignUpPage = () => {
+  const nameInput = useRef(null) as RefObject<HTMLInputElement>;
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
   const passwordInput = useRef(null) as RefObject<HTMLInputElement>;
+  const cpfInput = useRef(null) as RefObject<HTMLInputElement>;
 
-  const { signIn } = useAuth();
+  const createUser = useUserCreate();
   const navigate = useNavigate();
 
-  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const email = emailInput?.current?.value;
     const password = passwordInput?.current?.value;
+    const name = nameInput?.current?.value;
+    const cpf = cpfInput?.current?.value;
 
-    if (!email || !password) {
+    if (!email || !password || !cpf || !name) {
       return;
     }
 
-    await signIn({ email, password });
-    navigate('/events');
+    await createUser.mutateAsync({ cpf, email, name, password });
+    navigate('/login');
   };
 
   return (
@@ -37,10 +41,18 @@ const LoginPage = () => {
         xs={6}
         sx={({ palette }) => ({ background: palette.background.default })}
       >
-        <S.Form onSubmit={handleLogin}>
+        <S.Form onSubmit={handleSignUp}>
           <Typography variant="h1" sx={{ marginBottom: '2rem' }}>
-            Fazer login
+            Registrar-se
           </Typography>
+
+          <TextField
+            label="Nome"
+            sx={{ background: '#fff' }}
+            margin="dense"
+            inputRef={nameInput}
+            required
+          />
 
           <TextField
             label="E-mail"
@@ -60,17 +72,25 @@ const LoginPage = () => {
             required
           />
 
+          <TextField
+            label="CPF"
+            sx={{ background: '#fff' }}
+            margin="dense"
+            inputRef={cpfInput}
+            required
+          />
+
           <Button
             type="submit"
             variant="contained"
             size="large"
             sx={{ marginTop: '1rem' }}
           >
-            Entrar
+            Registrar
           </Button>
 
           <Button sx={{ marginTop: '1rem' }}>
-            <RouterLink to="/signup">Registrar-se</RouterLink>
+            <RouterLink to="/login">Voltar ao login</RouterLink>
           </Button>
         </S.Form>
       </Grid>
@@ -78,4 +98,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
