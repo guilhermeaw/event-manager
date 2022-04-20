@@ -7,7 +7,7 @@ import * as S from './styles';
 
 import { useAuth } from '../../store/Auth';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
   const passwordInput = useRef(null) as RefObject<HTMLInputElement>;
 
@@ -69,3 +69,5 @@ export const LoginPage = () => {
     </Grid>
   );
 };
+
+export default LoginPage;

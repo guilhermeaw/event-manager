@@ -5,7 +5,7 @@ import { RouterLink } from '../../components/Link';
 import { MainContainer } from '../../components/MainContainer';
 import { useAuth } from '../../store/Auth';
 
-export const HomePage = () => {
+const HomePage = () => {
   const { user } = useAuth();
 
   return (
@@ -30,3 +30,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

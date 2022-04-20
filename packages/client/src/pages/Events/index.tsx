@@ -3,7 +3,7 @@ import { Card, Typography } from '@mui/material';
 import { Header } from '../../components/Header';
 import { MainContainer } from '../../components/MainContainer';
 
-export const EventsPage = () => {
+const EventsPage = () => {
   const nextEvents = [
     {
       id: 1,
@@ -78,3 +78,5 @@ export const EventsPage = () => {
     </>
   );
 };
+
+export default EventsPage;
