@@ -1,5 +1,6 @@
-import AppError from '@shared/errors/AppError';
 import axios from 'axios';
+
+import AppError from '@shared/errors/AppError';
 import { IUserDTO } from '../dtos/IUserDTO';
 
 interface IRequest {
@@ -8,9 +9,17 @@ interface IRequest {
 
 export default class FindUserService {
   public async execute({ user_id }: IRequest): Promise<IUserDTO> {
-    const { data: user } = await axios.get<IUserDTO>(
-      `http://localhost:3000/api/users/user/${user_id}`,
-    );
+    let user;
+
+    try {
+      const { data } = await axios.get<IUserDTO>(
+        `http://localhost:3000/api/users/users/${user_id}`,
+      );
+
+      user = data;
+    } catch (err) {
+      throw new AppError('Erro ao buscar usuário.');
+    }
 
     if (!user) {
       throw new AppError('Usuário não encontrado.');

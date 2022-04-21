@@ -1,3 +1,4 @@
+import { instanceToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import CreateCertificateService from '../services/CreateCertificateService';
@@ -22,7 +23,7 @@ export default class CertificatesController {
       event_id,
     });
 
-    return response.json({ ...certificate, event, user });
+    return response.json({ ...instanceToPlain(certificate), event, user });
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
@@ -44,6 +45,6 @@ export default class CertificatesController {
       event_id: eventIdAsNumber,
     });
 
-    return response.json({ ...certificate, event, user });
+    return response.json({ ...instanceToPlain(certificate), event, user });
   }
 }

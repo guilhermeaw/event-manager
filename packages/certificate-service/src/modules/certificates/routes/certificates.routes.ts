@@ -7,6 +7,9 @@ const certificatesRouter = Router();
 const certificatesController = new CertificatesController();
 
 certificatesRouter.post('/', certificatesController.create);
-certificatesRouter.get('/:user_id/:event_id', certificatesController.index);
+certificatesRouter.get(
+  '/user/:user_id/event/:event_id',
+  certificatesController.index,
+);
 
 export default certificatesRouter;

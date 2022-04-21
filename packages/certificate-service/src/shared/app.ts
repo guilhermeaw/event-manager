@@ -3,7 +3,7 @@ import 'express-async-errors';
 
 import routes from './routes';
 import errors from './middlewares/errors';
-import { initializeDataSource } from './database/ormconfig';
+import { initializeDataSource } from './database/ormConfig';
 
 initializeDataSource();
 

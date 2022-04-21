@@ -9,9 +9,17 @@ interface IRequest {
 
 export default class FindEventService {
   public async execute({ event_id }: IRequest): Promise<IEventDTO> {
-    const { data: event } = await axios.get<IEventDTO>(
-      `http://localhost:3000/api/events/event/${event_id}`,
-    );
+    let event;
+
+    try {
+      const { data } = await axios.get<IEventDTO>(
+        `http://localhost:3000/api/events/events/${event_id}`,
+      );
+
+      event = data;
+    } catch (err) {
+      throw new AppError('Erro ao buscar evento.');
+    }
 
     if (!event) {
       throw new AppError('Evento não encontrado.');
