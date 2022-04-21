@@ -3,4 +3,5 @@ export interface IUserDTO {
   email: string;
   password: string;
   cpf: string;
+  role: string;
 }

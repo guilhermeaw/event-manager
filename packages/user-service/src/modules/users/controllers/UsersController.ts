@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 
 import { UserRole } from '../entities/User';
 import CreateUserService from '../services/CreateUserService';
+import FindUserService from '../services/FindUserService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -14,6 +15,18 @@ export default class UsersController {
       email,
       password,
       role,
+    });
+
+    return response.json(instanceToPlain(user));
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const idAsNumber = Number(id);
+
+    const user = await new FindUserService().execute({
+      id: idAsNumber,
     });
 
     return response.json(instanceToPlain(user));

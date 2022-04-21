@@ -17,6 +17,14 @@ export default class UsersRepository {
     return user;
   }
 
+  public async findById(id: number): Promise<User | null> {
+    const user = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    return user;
+  }
+
   public async findByEmail(email: string): Promise<User | null> {
     const user = await this.ormRepository.findOne({
       where: { email },
