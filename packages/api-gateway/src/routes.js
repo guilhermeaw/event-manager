@@ -19,4 +19,14 @@ export const routes = [
       },
     }
   },
+  {
+    url: 'certificates',
+    proxy: {
+      target: "http://localhost:3003",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/api/certificates`]: '',
+      },
+    }
+  },
 ];
