@@ -1,4 +1,5 @@
 import { Button, Card, Typography } from '@mui/material';
+import { GenerateCertificateButton } from '../../components/GenerateCertificateButton';
 
 import { Header } from '../../components/Header';
 import { RouterLink } from '../../components/Link';
@@ -11,12 +12,14 @@ const EventsPage = () => {
       title: 'TDC Floripa',
       description: 'Um encontro de devs com muitas palestras',
       img: 'https://cdn.thedevconf.com.br/img/logo/logo-tdc.png',
+      duration: 300,
     },
     {
       id: 2,
       title: 'Show do Gustavo Lima',
       description: 'Show nacional do cantor Gustavo Lima',
       img: 'https://s2.glbimg.com/pQPSrWFUJBB1FRTWQGLUbtB9eeA=/0x0:833x794/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/A/c/6PPJpbRn684qOUAx1gVQ/gusttavo-lima.png',
+      duration: 60,
     },
   ];
 
@@ -26,12 +29,14 @@ const EventsPage = () => {
       title: 'TDC Floripa',
       description: 'Um encontro de devs com muitas palestras',
       img: 'https://cdn.thedevconf.com.br/img/logo/logo-tdc.png',
+      duration: 300,
     },
     {
       id: 2,
       title: 'Show do Gustavo Lima',
       description: 'Show nacional do cantor Gustavo Lima',
       img: 'https://s2.glbimg.com/pQPSrWFUJBB1FRTWQGLUbtB9eeA=/0x0:833x794/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/A/c/6PPJpbRn684qOUAx1gVQ/gusttavo-lima.png',
+      duration: 60,
     },
   ];
 
@@ -43,6 +48,12 @@ const EventsPage = () => {
         <Button fullWidth variant="outlined" sx={{ margin: '1rem 0' }}>
           <RouterLink to="/my-events">Acessar meus eventos</RouterLink>
         </Button>
+
+        <GenerateCertificateButton
+          userName="José Silva"
+          event={nextEvents[0]}
+          hash="as56d4sa65dsdsa564da"
+        />
 
         <Typography variant="h3">Em andamento</Typography>
         <Typography variant="subtitle1">

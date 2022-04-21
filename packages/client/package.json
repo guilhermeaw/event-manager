@@ -21,6 +21,7 @@
   "dependencies": {
     "@mui/material": "^5.6.2",
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@react-pdf/renderer": "^2.1.1",
     "axios": "^0.26.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -47,7 +48,8 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "prettier": "^2.6.2",
     "typescript": "^4.6.3",
-    "vite": "^2.9.2"
+    "vite": "^2.9.2",
+    "vite-plugin-shim-react-pdf": "^1.0.5"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
