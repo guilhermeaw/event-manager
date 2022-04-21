@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from '@mui/material';
-import { GenerateCertificateButton } from '../../components/GenerateCertificateButton';
 
+import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { Header } from '../../components/Header';
 import { RouterLink } from '../../components/Link';
 import { MainContainer } from '../../components/MainContainer';
@@ -49,7 +49,7 @@ const EventsPage = () => {
           <RouterLink to="/my-events">Acessar meus eventos</RouterLink>
         </Button>
 
-        <GenerateCertificateButton
+        <DownloadCertificateButton
           userName="José Silva"
           event={nextEvents[0]}
           hash="as56d4sa65dsdsa564da"
