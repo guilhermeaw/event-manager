@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes as RouteList, Route } from 'react-router-dom';
+import { DashboardPage } from '../pages/Dashboard';
 
 import HomePage from '../pages/Home';
 import LoginPage from '../pages/Login';
@@ -16,6 +17,8 @@ export const Routes = () => (
         <Route path="/signup" element={<SignUpPage />} />
 
         <Route path="/events" element={<EventsPage />} />
+
+        <Route path="/dashboard" element={<DashboardPage />} />
       </RouteList>
     </Suspense>
   </BrowserRouter>
