@@ -3,10 +3,10 @@ import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { RouterLink } from '../../components/Link';
+import { InputEmail } from '../../components/InputEmail';
 import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
-import { EmailInput } from '../../components/EmailInput';
 
 const SignUpPage = () => {
   const nameInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -55,7 +55,7 @@ const SignUpPage = () => {
             required
           />
 
-          <EmailInput
+          <InputEmail
             inputRef={emailInput}
             size="medium"
             margin="dense"

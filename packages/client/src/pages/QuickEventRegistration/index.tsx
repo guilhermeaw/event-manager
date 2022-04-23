@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 import { MainContainer } from '../../components/MainContainer';
-import { EmailInput } from '../../components/EmailInput';
+import { InputEmail } from '../../components/InputEmail';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -39,7 +39,7 @@ const EventQuickRegistrationPage = () => {
       <form onSubmit={handleSubmitQuickEventRegistration}>
         <Grid container spacing={2} sx={{ marginTop: '0.5rem' }}>
           <Grid item xs={12}>
-            <EmailInput inputRef={emailInput} required />
+            <InputEmail inputRef={emailInput} required />
             <FormHelperText>
               Será criado um pré-cadastro do usuário e será enviado um link para
               o e-mail informado, para concluir posteriormente o cadastro no

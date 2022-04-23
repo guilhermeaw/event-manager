@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
 
 import { useAuth } from '../../store/Auth';
+
 import { RouterLink } from '../../components/Link';
-import { EmailInput } from '../../components/EmailInput';
+import { InputEmail } from '../../components/InputEmail';
 
 const LoginPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -43,7 +44,7 @@ const LoginPage = () => {
             Fazer login
           </Typography>
 
-          <EmailInput
+          <InputEmail
             inputRef={emailInput}
             size="medium"
             margin="dense"

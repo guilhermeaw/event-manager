@@ -1,6 +1,6 @@
 import { TextField, TextFieldProps } from '@mui/material';
 
-export const EmailInput = (props: TextFieldProps) => {
+export const InputEmail = (props: TextFieldProps) => {
   return (
     <TextField
       label="E-mail"
