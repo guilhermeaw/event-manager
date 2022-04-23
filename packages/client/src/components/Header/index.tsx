@@ -1,7 +1,8 @@
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Container, Stack, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../store/Auth';
+import { UserOptionsButton } from './fragments/UserOptionsButton';
 
 import * as S from './styles';
 
@@ -30,9 +31,13 @@ export const Header = () => {
         </Typography>
 
         {user && (
-          <Button variant="contained" onClick={handleLogout}>
-            Logout
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <UserOptionsButton userRole={user.role} />
+
+            <Button variant="contained" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Stack>
         )}
       </Container>
     </S.Header>
