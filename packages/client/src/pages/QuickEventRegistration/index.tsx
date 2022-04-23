@@ -13,7 +13,7 @@ import { SelectEvent } from '../../components/SelectEvent';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
-  const [event, setEvent] = useState('');
+  const [selectedEvent, setElectedEvent] = useState('');
 
   const handleSubmitQuickEventRegistration = (
     event: FormEvent<HTMLFormElement>,
@@ -24,7 +24,7 @@ const EventQuickRegistrationPage = () => {
   const handleSelectEvent = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    setEvent(event.target.value as string);
+    setElectedEvent(event.target.value as string);
   };
 
   return (
@@ -48,7 +48,11 @@ const EventQuickRegistrationPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <SelectEvent value={event} onChange={handleSelectEvent} required>
+            <SelectEvent
+              value={selectedEvent}
+              onChange={handleSelectEvent}
+              required
+            >
               <MenuItem value="TDC Floripa">TDC Floripa</MenuItem>
               <MenuItem value="Show do Gustavo Lima">
                 Show do Gustavo Lima
