@@ -1,8 +1,7 @@
-import { Button, Card, Typography } from '@mui/material';
+import { Card, Typography } from '@mui/material';
 
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { Header } from '../../components/Header';
-import { RouterLink } from '../../components/Link';
 import { MainContainer } from '../../components/MainContainer';
 
 const EventsPage = () => {
@@ -23,7 +22,7 @@ const EventsPage = () => {
     },
   ];
 
-  const lastEvents = [
+  const myEvents = [
     {
       id: 1,
       title: 'TDC Floripa',
@@ -45,22 +44,16 @@ const EventsPage = () => {
       <Header />
 
       <MainContainer>
-        <Button fullWidth variant="outlined" sx={{ margin: '1rem 0' }}>
-          <RouterLink to="/my-events">Acessar meus eventos</RouterLink>
-        </Button>
-
         <DownloadCertificateButton
           userName="José Silva"
           event={nextEvents[0]}
           hash="as56d4sa65dsdsa564da"
         />
 
-        <Typography variant="h3">Em andamento</Typography>
-        <Typography variant="subtitle1">
-          Listagem dos eventos em andamento
-        </Typography>
+        <Typography variant="h3">Meus eventos</Typography>
+        <Typography variant="subtitle1">Listagem dos meus eventos</Typography>
 
-        {nextEvents.map(event => (
+        {myEvents.map(event => (
           <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
             <Typography>{event.title}</Typography>
             <Typography>{event.description}</Typography>
@@ -79,24 +72,6 @@ const EventsPage = () => {
         </Typography>
 
         {nextEvents.map(event => (
-          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-            <Typography>{event.title}</Typography>
-            <Typography>{event.description}</Typography>
-            <img
-              src={event.img}
-              alt="imagem do evento"
-              height="64px"
-              width="64px"
-            />
-          </Card>
-        ))}
-
-        <Typography variant="h4">Eventos anteriores</Typography>
-        <Typography variant="subtitle2">
-          Listagem dos eventos anteriores organizados pela equipe Event Manager
-        </Typography>
-
-        {lastEvents.map(event => (
           <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
             <Typography>{event.title}</Typography>
             <Typography>{event.description}</Typography>
