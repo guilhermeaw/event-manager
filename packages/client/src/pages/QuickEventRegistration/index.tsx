@@ -4,12 +4,12 @@ import {
   FormHelperText,
   Grid,
   MenuItem,
-  TextField,
   Typography,
 } from '@mui/material';
 
 import { MainContainer } from '../../components/MainContainer';
 import { InputEmail } from '../../components/InputEmail';
+import { SelectEvent } from '../../components/SelectEvent';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -48,21 +48,12 @@ const EventQuickRegistrationPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextField
-              select
-              label="Evento"
-              fullWidth
-              size="small"
-              value={event}
-              onChange={handleSelectEvent}
-              required
-              sx={{ background: '#fff' }}
-            >
+            <SelectEvent value={event} onChange={handleSelectEvent} required>
               <MenuItem value="TDC Floripa">TDC Floripa</MenuItem>
               <MenuItem value="Show do Gustavo Lima">
                 Show do Gustavo Lima
               </MenuItem>
-            </TextField>
+            </SelectEvent>
 
             <FormHelperText>
               Selecione o evento que o usuário deseja se inscrever.
