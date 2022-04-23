@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import { DashboardCardItem } from '../../components/DashboardCardItem';
 import { MainContainer } from '../../components/MainContainer';
 
-export const DashboardPage = () => {
+const DashboardPage = () => {
   return (
     <MainContainer>
       <Grid container spacing={3}>
@@ -19,10 +19,12 @@ export const DashboardPage = () => {
           <DashboardCardItem
             title="Inscrição rápida"
             description="Realizar a inscrição rápida de um novo usuário no evento"
-            routePath="/events/fast-registration"
+            routePath="/events/quick-registration"
           />
         </Grid>
       </Grid>
     </MainContainer>
   );
 };
+
+export default DashboardPage;
