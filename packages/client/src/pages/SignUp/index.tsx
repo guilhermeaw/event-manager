@@ -6,6 +6,7 @@ import { RouterLink } from '../../components/Link';
 import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
+import { EmailInput } from '../../components/EmailInput';
 
 const SignUpPage = () => {
   const nameInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -54,12 +55,10 @@ const SignUpPage = () => {
             required
           />
 
-          <TextField
-            label="E-mail"
-            type="email"
-            sx={{ background: '#fff' }}
-            margin="dense"
+          <EmailInput
             inputRef={emailInput}
+            size="medium"
+            margin="dense"
             required
           />
 

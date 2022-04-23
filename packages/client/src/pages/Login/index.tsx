@@ -6,6 +6,7 @@ import * as S from './styles';
 
 import { useAuth } from '../../store/Auth';
 import { RouterLink } from '../../components/Link';
+import { EmailInput } from '../../components/EmailInput';
 
 const LoginPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -42,12 +43,10 @@ const LoginPage = () => {
             Fazer login
           </Typography>
 
-          <TextField
-            label="E-mail"
-            type="email"
-            sx={{ background: '#fff' }}
-            margin="dense"
+          <EmailInput
             inputRef={emailInput}
+            size="medium"
+            margin="dense"
             required
           />
 
