@@ -1,7 +1,6 @@
 import { Card, Typography } from '@mui/material';
 
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
-import { Header } from '../../components/Header';
 import { MainContainer } from '../../components/MainContainer';
 
 const EventsPage = () => {
@@ -40,51 +39,47 @@ const EventsPage = () => {
   ];
 
   return (
-    <>
-      <Header />
+    <MainContainer>
+      <DownloadCertificateButton
+        userName="José Silva"
+        event={nextEvents[0]}
+        hash="as56d4sa65dsdsa564da"
+      />
 
-      <MainContainer>
-        <DownloadCertificateButton
-          userName="José Silva"
-          event={nextEvents[0]}
-          hash="as56d4sa65dsdsa564da"
-        />
+      <Typography variant="h3">Meus eventos</Typography>
+      <Typography variant="subtitle1">Listagem dos meus eventos</Typography>
 
-        <Typography variant="h3">Meus eventos</Typography>
-        <Typography variant="subtitle1">Listagem dos meus eventos</Typography>
+      {myEvents.map(event => (
+        <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
+          <Typography>{event.title}</Typography>
+          <Typography>{event.description}</Typography>
+          <img
+            src={event.img}
+            alt="imagem do evento"
+            height="64px"
+            width="64px"
+          />
+        </Card>
+      ))}
 
-        {myEvents.map(event => (
-          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-            <Typography>{event.title}</Typography>
-            <Typography>{event.description}</Typography>
-            <img
-              src={event.img}
-              alt="imagem do evento"
-              height="64px"
-              width="64px"
-            />
-          </Card>
-        ))}
+      <Typography variant="h3">Próximos eventos</Typography>
+      <Typography variant="subtitle1">
+        Listagem dos próximos eventos organizados pela equipe Event Manager
+      </Typography>
 
-        <Typography variant="h3">Próximos eventos</Typography>
-        <Typography variant="subtitle1">
-          Listagem dos próximos eventos organizados pela equipe Event Manager
-        </Typography>
-
-        {nextEvents.map(event => (
-          <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-            <Typography>{event.title}</Typography>
-            <Typography>{event.description}</Typography>
-            <img
-              src={event.img}
-              alt="imagem do evento"
-              height="64px"
-              width="64px"
-            />
-          </Card>
-        ))}
-      </MainContainer>
-    </>
+      {nextEvents.map(event => (
+        <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
+          <Typography>{event.title}</Typography>
+          <Typography>{event.description}</Typography>
+          <img
+            src={event.img}
+            alt="imagem do evento"
+            height="64px"
+            width="64px"
+          />
+        </Card>
+      ))}
+    </MainContainer>
   );
 };
 
