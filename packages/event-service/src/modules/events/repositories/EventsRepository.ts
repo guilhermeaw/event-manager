@@ -1,6 +1,7 @@
-import { Repository } from 'typeorm';
+import { Repository, Between } from 'typeorm';
 
 import AppDataSource from '@shared/database/ormconfig';
+import { IDateIntervalDTO } from '../dtos/DateInterval';
 import Event from '../entities/Event';
 
 export default class EventsRepository {
@@ -28,6 +29,14 @@ export default class EventsRepository {
   public async findById(id: number): Promise<Event | null> {
     const event = await this.ormRepository.findOne({
       where: { id },
+    });
+
+    return event;
+  }
+
+  public async listByDate({ from, to }: IDateIntervalDTO): Promise<Event[]> {
+    const event = await this.ormRepository.find({
+      where: { date: Between(from, to) },
     });
 
     return event;
