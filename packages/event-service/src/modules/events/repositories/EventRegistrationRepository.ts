@@ -20,7 +20,7 @@ export default class EventRegistrationRepository {
   }
 
   public async update(
-    eventRegistration: EventRegistration,
+    eventRegistration: Omit<EventRegistration, 'event'>,
   ): Promise<EventRegistration> {
     return this.ormRepository.save(eventRegistration);
   }
@@ -42,7 +42,7 @@ export default class EventRegistrationRepository {
   public async listMyEvents(user_id: number): Promise<EventRegistration[]> {
     const events = await this.ormRepository.find({
       where: { user_id },
-    })
+    });
 
     return events;
   }
