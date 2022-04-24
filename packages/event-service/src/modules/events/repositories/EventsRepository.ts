@@ -1,8 +1,8 @@
-import { Repository, Between } from 'typeorm';
+import { Repository, Between, MoreThan } from 'typeorm';
 
 import AppDataSource from '@shared/database/ormconfig';
-import { IDateIntervalDTO } from '../dtos/DateInterval';
 import Event from '../entities/Event';
+import { IDateIntervalDTO } from '../dtos/DateInterval';
 
 export default class EventsRepository {
   private ormRepository: Repository<Event>;
@@ -43,5 +43,13 @@ export default class EventsRepository {
     });
 
     return event;
+  }
+
+  public async listNextEvents(date: Date): Promise<Event[]> {
+    const events = await this.ormRepository.find({
+      where: { date: MoreThan(date) },
+    });
+
+    return events;
   }
 }

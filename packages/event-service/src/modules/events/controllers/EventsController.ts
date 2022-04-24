@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import CreateEventService from '../services/CreateEventService';
 import FindEventService from '../services/FindEventService';
 import ListEventsInDayService from '../services/ListEventsInDayService';
+import ListNextEventsService from '../services/ListNextEventsService';
 
 export default class EventsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -44,5 +45,16 @@ export default class EventsController {
     });
 
     return response.json(event);
+  }
+
+  public async listNextEvents(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const events = await new ListNextEventsService().execute({
+      date: new Date(),
+    });
+
+    return response.json(events);
   }
 }

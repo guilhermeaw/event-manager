@@ -10,5 +10,6 @@ eventsRouter.post('/', eventsController.create);
 
 eventsRouter.get('/id/:id', eventsController.getById);
 eventsRouter.get('/today-events', eventsController.listTodayEvents);
+eventsRouter.get('/next-events', eventsController.listNextEvents);
 
 export default eventsRouter;

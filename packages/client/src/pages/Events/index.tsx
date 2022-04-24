@@ -2,8 +2,10 @@ import { Card, Typography } from '@mui/material';
 
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { MainContainer } from '../../components/MainContainer';
+import { useFetchNextEvents } from '../../services/queries';
 
 const EventsPage = () => {
+  const event = useFetchNextEvents();
   const nextEvents = [
     {
       id: 1,
