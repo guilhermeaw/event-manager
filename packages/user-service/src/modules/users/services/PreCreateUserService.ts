@@ -4,6 +4,7 @@ import UsersRepository from '../repositories/UsersRepository';
 
 interface IRequest {
   email: string;
+  name: string;
   role: UserRole;
 }
 
@@ -16,6 +17,7 @@ export default class PreCreateUserService {
 
   public async execute({
     email,
+    name,
     role,
   }: IRequest): Promise<Omit<User, 'password'>> {
     const userAlreadyExistsWithEmail = await this.usersRepository.findByEmail(
@@ -28,6 +30,7 @@ export default class PreCreateUserService {
 
     const user = await this.usersRepository.create({
       email,
+      name,
       role,
     });
 

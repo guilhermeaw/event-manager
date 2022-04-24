@@ -26,10 +26,13 @@ export default class EventRegistrationController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { email, event_id } = request.body;
+    const { email, userName, event_id } = request.body;
 
     // Pré-cria o user
-    const user = await new PreCreateUserService().execute(email);
+    const user = await new PreCreateUserService().execute({
+      email,
+      name: userName,
+    });
 
     const user_id = user.id;
 

@@ -4,13 +4,16 @@ import AppError from '@shared/errors/AppError';
 import { IUserDTO } from '../dtos/IUserDTO';
 
 export default class PreCreateUserService {
-  public async execute(email: string): Promise<IUserDTO> {
+  public async execute({
+    email,
+    name,
+  }: Pick<IUserDTO, 'email' | 'name'>): Promise<IUserDTO> {
     let user;
 
     try {
       const { data } = await axios.post<IUserDTO>(
         `http://localhost:3000/api/users/users/pre-create`,
-        { email },
+        { email, name },
       );
 
       user = data;

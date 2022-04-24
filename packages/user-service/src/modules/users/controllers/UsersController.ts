@@ -26,10 +26,11 @@ export default class UsersController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { email, role = UserRole.USER } = request.body;
+    const { email, name, role = UserRole.USER } = request.body;
 
     const user = await new PreCreateUserService().execute({
       email,
+      name,
       role,
     });
 
