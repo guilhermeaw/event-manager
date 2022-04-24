@@ -6,7 +6,7 @@ export const useValidateCertificate = () => {
   return useMutation(
     (hash: string) =>
       api
-        .post('/certificates/certificates', {
+        .post('/certificates/certificates/validate', {
           hash,
         })
         .then(response => response.data),

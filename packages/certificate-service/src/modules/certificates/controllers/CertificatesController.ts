@@ -53,7 +53,7 @@ export default class CertificatesController {
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { hash } = request.params;
+    const { hash } = request.body;
 
     const certificate = await new FindCertificateByHashService().execute(hash);
 
