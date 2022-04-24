@@ -4,6 +4,7 @@ import AppDataSource from '@shared/database/ormconfig';
 import Event from '../entities/Event';
 import { IDateIntervalDTO } from '../dtos/DateInterval';
 
+import EventRegistration from '../entities/EventRegistration';
 export default class EventsRepository {
   private ormRepository: Repository<Event>;
 

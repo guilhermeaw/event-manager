@@ -38,4 +38,12 @@ export default class EventRegistrationRepository {
 
     return eventRegistration;
   }
+
+  public async listMyEvents(user_id: number): Promise<EventRegistration[]> {
+    const events = await this.ormRepository.find({
+      where: { user_id },
+    })
+
+    return events;
+  }
 }

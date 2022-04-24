@@ -6,6 +6,7 @@ import FindEventService from '../services/FindEventService';
 import ListEventsInDayService from '../services/ListEventsInDayService';
 import ListNextEventsService from '../services/ListNextEventsService';
 import RegisterCheckinService from '../services/RegisterCheckinService';
+import ListMyEventsService from '../services/ListMyEventsService';
 
 export default class EventsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -68,6 +69,21 @@ export default class EventsController {
   ): Promise<Response> {
     const events = await new ListNextEventsService().execute({
       date: new Date(),
+    });
+
+    return response.json(events);
+  }
+
+  public async listMyEvents(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { user_id } = request.params;
+
+    const userIdAsNumber = Number(user_id);
+
+    const events = await new ListMyEventsService().execute({
+      user_id: userIdAsNumber,
     });
 
     return response.json(events);

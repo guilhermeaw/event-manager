@@ -10,7 +10,7 @@ const { PDFDownloadLink } = pdf;
 
 export const DownloadCertificateButton = (props: CertificateProps) => {
   return (
-    <Button>
+    <Button variant="contained">
       <PDFDownloadLink
         style={{ textDecoration: 'none', color: 'inherit' }}
         document={<CertificateDocument {...props} />}

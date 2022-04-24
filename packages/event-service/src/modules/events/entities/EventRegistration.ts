@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
+
+import Event from './Event';
 
 export enum Status {
   PENDING = 'pending',
@@ -12,6 +14,10 @@ export default class EventRegistration {
 
   @PrimaryColumn()
   event_id: number;
+
+  @ManyToOne(() => Event, {eager: true})
+  @JoinColumn({ name: 'event_id' })
+  event: Event;
 
   @Column('enum', { enum: Status })
   status: Status;

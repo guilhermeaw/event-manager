@@ -6,7 +6,7 @@ const { Document, Page, Image, Text, View } = pdf;
 
 // #34495e
 type Event = {
-  title: string;
+  name: string;
   duration: number;
 };
 
@@ -26,7 +26,7 @@ export const CertificateDocument = ({
       <View fixed style={styles.view}>
         <Image style={styles.image} src="src/assets/images/certificate.png" />
         <Text style={styles.userText}>{userName}</Text>
-        <Text style={styles.eventText}>{event.title}</Text>
+        <Text style={styles.eventText}>{event.name}</Text>
         <Text style={styles.durationText}>{event.duration / 60}h</Text>
         <Text style={styles.hashText}>Hash: {hash}</Text>
       </View>

@@ -13,5 +13,6 @@ eventsRouter.put('/checkin', eventsController.registerCheckin);
 eventsRouter.get('/id/:id', eventsController.getById);
 eventsRouter.get('/today-events', eventsController.listTodayEvents);
 eventsRouter.get('/next-events', eventsController.listNextEvents);
+eventsRouter.get('/my-events/:user_id', eventsController.listMyEvents);
 
 export default eventsRouter;
