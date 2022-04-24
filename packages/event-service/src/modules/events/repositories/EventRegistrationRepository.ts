@@ -10,14 +10,28 @@ export default class EventRegistrationRepository {
     this.ormRepository = AppDataSource.getRepository(EventRegistration);
   }
 
-  public async create(eventRegistrationData: EventRegistration): Promise<EventRegistration> {
+  public async create(
+    eventRegistrationData: EventRegistration,
+  ): Promise<EventRegistration> {
     const eventRegistration = this.ormRepository.create(eventRegistrationData);
     await this.ormRepository.save(eventRegistration);
 
     return eventRegistration;
   }
 
-  public async findByName(user_id: number, event_id: number): Promise<EventRegistration | null> {
+  public async update(
+    eventRegistration: EventRegistration,
+  ): Promise<EventRegistration> {
+    return this.ormRepository.save(eventRegistration);
+  }
+
+  public async findByUserAndEvent({
+    event_id,
+    user_id,
+  }: Pick<
+    EventRegistration,
+    'event_id' | 'user_id'
+  >): Promise<EventRegistration | null> {
     const eventRegistration = await this.ormRepository.findOne({
       where: { user_id, event_id },
     });
