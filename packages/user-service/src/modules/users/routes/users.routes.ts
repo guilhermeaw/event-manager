@@ -9,6 +9,8 @@ const usersController = new UsersController();
 usersRouter.post('/create', usersController.create);
 usersRouter.post('/pre-create', usersController.preCreate);
 
+usersRouter.put('/update/:id', usersController.update);
+
 usersRouter.get('/list-all', usersController.listAll);
 
 usersRouter.get('/id/:id', usersController.findById);

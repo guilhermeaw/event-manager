@@ -7,6 +7,7 @@ import FindUserByTokenService from '../services/FindUserByTokenService';
 import FindUserService from '../services/FindUserService';
 import ListAllUsersService from '../services/ListAllUsersService';
 import PreCreateUserService from '../services/PreCreateUserService';
+import UpdateUserService from '../services/UpdateUserService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -36,6 +37,24 @@ export default class UsersController {
     });
 
     return response.json(instanceToPlain(user));
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { cpf, password, email, name, role = UserRole.USER } = request.body;
+    const { id } = request.params;
+
+    const idAsNumber = Number(id);
+
+    await new UpdateUserService().execute({
+      email,
+      name,
+      role,
+      cpf,
+      password,
+      id: idAsNumber,
+    });
+
+    return response.status(204).json();
   }
 
   public async findById(
