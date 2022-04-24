@@ -40,4 +40,10 @@ export default class UsersRepository {
 
     return user;
   }
+
+  public async listAll(): Promise<User[]> {
+    const users = await this.ormRepository.find();
+
+    return users;
+  }
 }

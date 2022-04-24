@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { UserRole } from '../entities/User';
 import CreateUserService from '../services/CreateUserService';
 import FindUserService from '../services/FindUserService';
+import ListAllUsersService from '../services/ListAllUsersService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -30,5 +31,14 @@ export default class UsersController {
     });
 
     return response.json(instanceToPlain(user));
+  }
+
+  public async listAll(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const users = await new ListAllUsersService().execute();
+
+    return response.json(instanceToPlain(users));
   }
 }
