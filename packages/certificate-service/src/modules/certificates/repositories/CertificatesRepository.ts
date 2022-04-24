@@ -30,4 +30,12 @@ export default class CertificatesRepository {
 
     return certificate;
   }
+
+  public async findByHash(hash: string): Promise<Certificate | null> {
+    const certificate = await this.ormRepository.findOne({
+      where: { hash },
+    });
+
+    return certificate;
+  }
 }
