@@ -1,6 +1,6 @@
 import { Button, Card, Typography } from '@mui/material';
 
-import { RouterLink } from '../Link';
+import { RouterLink } from '../RouterLink';
 
 type DashboardCardItemProps = {
   title: string;

@@ -6,7 +6,7 @@ import * as S from './styles';
 
 import { useAuth } from '../../store/Auth';
 
-import { RouterLink } from '../../components/Link';
+import { RouterLink } from '../../components/RouterLink';
 import { InputEmail } from '../../components/InputEmail';
 
 const LoginPage = () => {

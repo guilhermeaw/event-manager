@@ -1,6 +1,6 @@
 import { Button, Typography } from '@mui/material';
 
-import { RouterLink } from '../../components/Link';
+import { RouterLink } from '../../components/RouterLink';
 import { MainContainer } from '../../components/MainContainer';
 import { useAuth } from '../../store/Auth';
 

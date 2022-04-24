@@ -2,7 +2,7 @@ import { FormEvent, RefObject, useRef } from 'react';
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { RouterLink } from '../../components/Link';
+import { RouterLink } from '../../components/RouterLink';
 import { InputEmail } from '../../components/InputEmail';
 import { useUserCreate } from '../../services/mutations';
 
