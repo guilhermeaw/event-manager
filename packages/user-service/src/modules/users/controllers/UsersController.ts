@@ -5,6 +5,7 @@ import { UserRole } from '../entities/User';
 import CreateUserService from '../services/CreateUserService';
 import FindUserService from '../services/FindUserService';
 import ListAllUsersService from '../services/ListAllUsersService';
+import PreCreateUserService from '../services/PreCreateUserService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -15,6 +16,20 @@ export default class UsersController {
       name,
       email,
       password,
+      role,
+    });
+
+    return response.json(instanceToPlain(user));
+  }
+
+  public async preCreate(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { email, role = UserRole.USER } = request.body;
+
+    const user = await new PreCreateUserService().execute({
+      email,
       role,
     });
 
