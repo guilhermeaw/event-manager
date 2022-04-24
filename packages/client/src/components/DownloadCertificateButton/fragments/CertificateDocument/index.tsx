@@ -22,9 +22,9 @@ export const CertificateDocument = ({
   userName,
 }: CertificateProps) => (
   <Document>
-    <Page size="A4" orientation="landscape">
+    <Page fixed size="A4" orientation="landscape">
       <View fixed style={styles.view}>
-        <Image style={styles.image} src="src/assets/images/certificate.png" />
+        <Image style={styles.image} src="src/assets/images/certificate.jpg" />
         <Text style={styles.userText}>{userName}</Text>
         <Text style={styles.eventText}>{event.name}</Text>
         <Text style={styles.durationText}>{event.duration / 60}h</Text>
