@@ -29,16 +29,19 @@ const EventQuickRegistrationPage = () => {
     event.preventDefault();
 
     const email = emailInput?.current?.value;
+    const userName = userNameInput?.current?.value;
 
-    if (!selectedEvent || !email) {
+    if (!selectedEvent || !email || !userName) {
       return;
     }
 
     await quickRegister({
       event_id: Number(selectedEvent),
       email,
+      userName,
     });
 
+    userNameInput.current.value = '';
     emailInput.current.value = '';
     setSelectedEvent('');
   };
