@@ -13,7 +13,7 @@ type SignUpCredentials = {
 export const useUserCreate = () => {
   return useMutation(({ name, email, password, cpf }: SignUpCredentials) =>
     api
-      .post<User>('/users/users', { email, password, name, cpf })
+      .post<User>('/users/users/create', { email, password, name, cpf })
       .then(response => response.data),
   );
 };

@@ -1,5 +1,5 @@
-import { RefObject, useRef } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { FormEvent, RefObject, useRef } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Button, CircularProgress, Typography } from '@mui/material';
 
 import { InputCPF } from '../../components/InputCPF';
@@ -8,6 +8,7 @@ import { InputPassword } from '../../components/InputPassword';
 import { InputUserName } from '../../components/InputUserName';
 import { MainContainer } from '../../components/MainContainer';
 import { useFindUserByToken } from '../../services/queries/useFindUserByToken';
+import { useUserUpdate } from '../../services/mutations/useUpdateUser';
 
 const CompleteRegisterPage = () => {
   const passwordInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -15,6 +16,29 @@ const CompleteRegisterPage = () => {
 
   const { token } = useParams();
   const { data: user, isLoading } = useFindUserByToken({ token });
+
+  const { mutateAsync: updateUser } = useUserUpdate();
+  const navigate = useNavigate();
+
+  const handleSubmitCompleteRegister = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
+    event.preventDefault();
+
+    const password = passwordInput?.current?.value;
+    const cpf = cpfInput?.current?.value;
+
+    if (!password || !cpf || !user) {
+      return;
+    }
+
+    await updateUser({
+      ...user,
+      password,
+      cpf,
+    });
+    navigate('/login');
+  };
 
   if (isLoading) {
     return <CircularProgress />;
@@ -32,7 +56,10 @@ const CompleteRegisterPage = () => {
               ocorrendo.
             </Typography>
 
-            <form style={{ marginTop: '1rem' }}>
+            <form
+              onSubmit={handleSubmitCompleteRegister}
+              style={{ marginTop: '1rem' }}
+            >
               <InputUserName
                 value={user.name}
                 variant="filled"
