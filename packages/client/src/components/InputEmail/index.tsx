@@ -8,7 +8,6 @@ export const InputEmail = (props: TextFieldProps) => {
       sx={{ background: '#fff' }}
       size="small"
       fullWidth
-      margin="dense"
       {...props}
     />
   );

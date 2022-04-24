@@ -12,9 +12,11 @@ import { InputEmail } from '../../components/InputEmail';
 import { SelectEvent } from '../../components/SelectEvent';
 import { useFetchNextEvents } from '../../services/queries';
 import { useQuickRegister } from '../../services/mutations/useQuickRegister';
+import { InputUserName } from '../../components/InputUserName';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
+  const userNameInput = useRef(null) as RefObject<HTMLInputElement>;
   const [selectedEvent, setSelectedEvent] = useState('');
 
   const fetchNextEvents = useFetchNextEvents();
@@ -58,6 +60,11 @@ const EventQuickRegistrationPage = () => {
 
       <form onSubmit={handleSubmitQuickEventRegistration}>
         <Grid container spacing={2} sx={{ marginTop: '0.5rem' }}>
+          <Grid item xs={12}>
+            <InputUserName inputRef={userNameInput} required />
+            <FormHelperText>Informe o nome do usuário</FormHelperText>
+          </Grid>
+
           <Grid item xs={12}>
             <InputEmail inputRef={emailInput} required />
             <FormHelperText>

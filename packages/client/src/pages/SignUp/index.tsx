@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { RouterLink } from '../../components/RouterLink';
 import { InputEmail } from '../../components/InputEmail';
+import { InputUserName } from '../../components/InputUserName';
 import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
@@ -47,9 +48,8 @@ const SignUpPage = () => {
             Registrar-se
           </Typography>
 
-          <TextField
-            label="Nome"
-            sx={{ background: '#fff' }}
+          <InputUserName
+            size="medium"
             margin="dense"
             inputRef={nameInput}
             required
