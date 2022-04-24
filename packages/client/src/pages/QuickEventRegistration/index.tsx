@@ -1,27 +1,50 @@
 import { ChangeEvent, FormEvent, RefObject, useRef, useState } from 'react';
-import { Button, FormHelperText, Grid, Typography } from '@mui/material';
+import {
+  Button,
+  CircularProgress,
+  FormHelperText,
+  Grid,
+  Typography,
+} from '@mui/material';
 
 import { MainContainer } from '../../components/MainContainer';
 import { InputEmail } from '../../components/InputEmail';
 import { SelectEvent } from '../../components/SelectEvent';
 import { useFetchNextEvents } from '../../services/queries';
+import { useQuickRegister } from '../../services/mutations/useQuickRegister';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
-  const [selectedEvent, setElectedEvent] = useState('');
+  const [selectedEvent, setSelectedEvent] = useState('');
 
   const fetchNextEvents = useFetchNextEvents();
 
-  const handleSubmitQuickEventRegistration = (
+  const { mutateAsync: quickRegister, isLoading } = useQuickRegister();
+
+  const handleSubmitQuickEventRegistration = async (
     event: FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
+
+    const email = emailInput?.current?.value;
+
+    if (!selectedEvent || !email) {
+      return;
+    }
+
+    await quickRegister({
+      event_id: Number(selectedEvent),
+      email,
+    });
+
+    emailInput.current.value = '';
+    setSelectedEvent('');
   };
 
   const handleSelectEvent = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    setElectedEvent(event.target.value as string);
+    setSelectedEvent(event.target.value as string);
   };
 
   return (
@@ -58,8 +81,12 @@ const EventQuickRegistrationPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Confirmar inscrição
+            <Button disabled={isLoading} type="submit" variant="contained">
+              {isLoading ? (
+                <CircularProgress size={24} />
+              ) : (
+                'Confirmar inscrição'
+              )}
             </Button>
           </Grid>
         </Grid>
