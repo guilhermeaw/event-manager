@@ -29,4 +29,14 @@ export const routes = [
       },
     }
   },
+  {
+    url: 'emails',
+    proxy: {
+      target: "http://localhost:3003",
+      changeOrigin: true,
+      pathRewrite: {
+        [`^/api/emails`]: '',
+      },
+    }
+  },
 ];
