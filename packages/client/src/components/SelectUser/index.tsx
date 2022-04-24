@@ -22,7 +22,7 @@ export const SelectUser = (props: SelectUserProps) => {
       {...props}
     >
       {users?.map(user => (
-        <MenuItem key={user.id} value={user.name}>
+        <MenuItem key={user.id} value={user.id}>
           {user.name}
         </MenuItem>
       ))}

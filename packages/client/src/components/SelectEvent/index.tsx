@@ -22,7 +22,7 @@ export const SelectEvent = (props: SelectEventProps) => {
       {...props}
     >
       {events?.map(event => (
-        <MenuItem key={event.id} value={event.name}>
+        <MenuItem key={event.id} value={event.id}>
           {event.name}
         </MenuItem>
       ))}

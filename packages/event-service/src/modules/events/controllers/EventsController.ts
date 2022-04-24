@@ -5,6 +5,7 @@ import CreateEventService from '../services/CreateEventService';
 import FindEventService from '../services/FindEventService';
 import ListEventsInDayService from '../services/ListEventsInDayService';
 import ListNextEventsService from '../services/ListNextEventsService';
+import RegisterCheckinService from '../services/RegisterCheckinService';
 
 export default class EventsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -19,6 +20,20 @@ export default class EventsController {
     });
 
     return response.json(instanceToPlain(event));
+  }
+
+  public async registerCheckin(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { event_id, user_id } = request.body;
+
+    const event = await new RegisterCheckinService().execute({
+      event_id,
+      user_id,
+    });
+
+    return response.json(event);
   }
 
   public async getById(

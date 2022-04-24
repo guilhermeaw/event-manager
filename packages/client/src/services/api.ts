@@ -4,4 +4,13 @@ const api = axios.create({
   baseURL: 'http://localhost:3000/api',
 });
 
+api.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error.response.data);
+  },
+);
+
 export default api;

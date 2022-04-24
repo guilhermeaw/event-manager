@@ -12,28 +12,45 @@ import { SelectEvent } from '../../components/SelectEvent';
 import { SelectUser } from '../../components/SelectUser';
 import { useFetchTodayEvents } from '../../services/queries';
 import { useFetchUsers } from '../../services/queries/useFetchUsers';
+import { useRegisterCheckin } from '../../services/mutations/useRegisterCheckin';
 
 const EventCheckinPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
-  const [selectedEvent, setElectedEvent] = useState('');
+  const [selectedEvent, setSelectedEvent] = useState('');
 
   const fetchTodayEvents = useFetchTodayEvents();
   const fetchUsers = useFetchUsers();
 
-  const handleSubmitEventCheckin = (event: FormEvent<HTMLFormElement>) => {
+  const { mutateAsync: registerCheckin } = useRegisterCheckin();
+
+  const handleSubmitEventCheckin = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
+
+    if (!selectedEvent || !selectedUser) {
+      return;
+    }
+
+    registerCheckin({
+      event_id: Number(selectedEvent),
+      user_id: Number(selectedUser),
+    });
+
+    setSelectedUser('');
+    setSelectedEvent('');
   };
 
   const handleSelectUser = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    setSelectedUser(event.target.value as string);
+    setSelectedUser(event.target.value);
   };
 
   const handleSelectEvent = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    setElectedEvent(event.target.value as string);
+    setSelectedEvent(event.target.value);
   };
 
   return (
