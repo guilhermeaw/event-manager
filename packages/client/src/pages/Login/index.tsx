@@ -1,5 +1,5 @@
 import { FormEvent, RefObject, useRef } from 'react';
-import { Grid, TextField, Typography, Button } from '@mui/material';
+import { Grid, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './styles';
@@ -8,6 +8,7 @@ import { useAuth } from '../../store/Auth';
 
 import { RouterLink } from '../../components/RouterLink';
 import { InputEmail } from '../../components/InputEmail';
+import { InputPassword } from '../../components/InputPassword';
 
 const LoginPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -51,10 +52,8 @@ const LoginPage = () => {
             required
           />
 
-          <TextField
-            label="Senha"
-            type="password"
-            sx={{ background: '#fff' }}
+          <InputPassword
+            size="medium"
             margin="dense"
             inputRef={passwordInput}
             required

@@ -1,30 +1,55 @@
 import { ChangeEvent, FormEvent, RefObject, useRef, useState } from 'react';
 import {
   Button,
+  CircularProgress,
   FormHelperText,
   Grid,
-  MenuItem,
   Typography,
 } from '@mui/material';
 
 import { MainContainer } from '../../components/MainContainer';
 import { InputEmail } from '../../components/InputEmail';
 import { SelectEvent } from '../../components/SelectEvent';
+import { useFetchNextEvents } from '../../services/queries';
+import { useQuickRegister } from '../../services/mutations/useQuickRegister';
+import { InputUserName } from '../../components/InputUserName';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
-  const [selectedEvent, setElectedEvent] = useState('');
+  const userNameInput = useRef(null) as RefObject<HTMLInputElement>;
+  const [selectedEvent, setSelectedEvent] = useState('');
 
-  const handleSubmitQuickEventRegistration = (
+  const fetchNextEvents = useFetchNextEvents();
+
+  const { mutateAsync: quickRegister, isLoading } = useQuickRegister();
+
+  const handleSubmitQuickEventRegistration = async (
     event: FormEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
+
+    const email = emailInput?.current?.value;
+    const userName = userNameInput?.current?.value;
+
+    if (!selectedEvent || !email || !userName) {
+      return;
+    }
+
+    await quickRegister({
+      event_id: Number(selectedEvent),
+      email,
+      userName,
+    });
+
+    userNameInput.current.value = '';
+    emailInput.current.value = '';
+    setSelectedEvent('');
   };
 
   const handleSelectEvent = (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
-    setElectedEvent(event.target.value as string);
+    setSelectedEvent(event.target.value as string);
   };
 
   return (
@@ -39,6 +64,11 @@ const EventQuickRegistrationPage = () => {
       <form onSubmit={handleSubmitQuickEventRegistration}>
         <Grid container spacing={2} sx={{ marginTop: '0.5rem' }}>
           <Grid item xs={12}>
+            <InputUserName inputRef={userNameInput} required />
+            <FormHelperText>Informe o nome do usuário</FormHelperText>
+          </Grid>
+
+          <Grid item xs={12}>
             <InputEmail inputRef={emailInput} required />
             <FormHelperText>
               Será criado um pré-cadastro do usuário e será enviado um link para
@@ -51,13 +81,9 @@ const EventQuickRegistrationPage = () => {
             <SelectEvent
               value={selectedEvent}
               onChange={handleSelectEvent}
+              query={fetchNextEvents}
               required
-            >
-              <MenuItem value="TDC Floripa">TDC Floripa</MenuItem>
-              <MenuItem value="Show do Gustavo Lima">
-                Show do Gustavo Lima
-              </MenuItem>
-            </SelectEvent>
+            />
 
             <FormHelperText>
               Selecione o evento que o usuário deseja se inscrever.
@@ -65,8 +91,12 @@ const EventQuickRegistrationPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Confirmar inscrição
+            <Button disabled={isLoading} type="submit" variant="contained">
+              {isLoading ? (
+                <CircularProgress size={24} />
+              ) : (
+                'Confirmar inscrição'
+              )}
             </Button>
           </Grid>
         </Grid>

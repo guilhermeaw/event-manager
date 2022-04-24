@@ -6,7 +6,7 @@ const eventsRouter = Router();
 
 const eventsController = new EventsController();
 
-eventsRouter.post('/', eventsController.create);
+eventsRouter.post('/create', eventsController.create);
 
 eventsRouter.put('/checkin', eventsController.registerCheckin);
 

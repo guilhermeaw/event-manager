@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import {
   Button,
+  CircularProgress,
   FormHelperText,
   Grid,
   MenuItem,
@@ -21,7 +22,7 @@ const EventCheckinPage = () => {
   const fetchTodayEvents = useFetchTodayEvents();
   const fetchUsers = useFetchUsers();
 
-  const { mutateAsync: registerCheckin } = useRegisterCheckin();
+  const { mutateAsync: registerCheckin, isLoading } = useRegisterCheckin();
 
   const handleSubmitEventCheckin = async (
     event: FormEvent<HTMLFormElement>,
@@ -32,7 +33,7 @@ const EventCheckinPage = () => {
       return;
     }
 
-    registerCheckin({
+    await registerCheckin({
       event_id: Number(selectedEvent),
       user_id: Number(selectedUser),
     });
@@ -92,8 +93,12 @@ const EventCheckinPage = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Registrar presença
+            <Button disabled={isLoading} type="submit" variant="contained">
+              {isLoading ? (
+                <CircularProgress size={24} />
+              ) : (
+                'Registrar presença'
+              )}
             </Button>
           </Grid>
         </Grid>

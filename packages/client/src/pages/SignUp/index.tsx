@@ -1,12 +1,15 @@
 import { FormEvent, RefObject, useRef } from 'react';
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { RouterLink } from '../../components/RouterLink';
 import { InputEmail } from '../../components/InputEmail';
+import { InputUserName } from '../../components/InputUserName';
 import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
+import { InputPassword } from '../../components/InputPassword';
+import { InputCPF } from '../../components/InputCPF';
 
 const SignUpPage = () => {
   const nameInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -47,9 +50,8 @@ const SignUpPage = () => {
             Registrar-se
           </Typography>
 
-          <TextField
-            label="Nome"
-            sx={{ background: '#fff' }}
+          <InputUserName
+            size="medium"
             margin="dense"
             inputRef={nameInput}
             required
@@ -62,22 +64,14 @@ const SignUpPage = () => {
             required
           />
 
-          <TextField
-            label="Senha"
-            type="password"
-            sx={{ background: '#fff' }}
+          <InputPassword
+            size="medium"
             margin="dense"
             inputRef={passwordInput}
             required
           />
 
-          <TextField
-            label="CPF"
-            sx={{ background: '#fff' }}
-            margin="dense"
-            inputRef={cpfInput}
-            required
-          />
+          <InputCPF size="medium" margin="dense" inputRef={cpfInput} required />
 
           <Button
             type="submit"

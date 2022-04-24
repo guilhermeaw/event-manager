@@ -9,6 +9,7 @@ import DashboardPage from '../pages/Dashboard';
 
 import EventCheckinPage from '../pages/EventCheckin';
 import EventQuickRegistrationPage from '../pages/QuickEventRegistration';
+import CompleteRegisterPage from '../pages/CompleteRegister';
 
 const EventsPage = React.lazy(() => import('../pages/Events'));
 
@@ -22,9 +23,14 @@ export const Routes = () => (
 
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/check-in" element={<EventCheckinPage />} />
+
         <Route
           path="/events/quick-registration"
           element={<EventQuickRegistrationPage />}
+        />
+        <Route
+          path="/complete-register/:token"
+          element={<CompleteRegisterPage />}
         />
 
         <Route path="/dashboard" element={<DashboardPage />} />

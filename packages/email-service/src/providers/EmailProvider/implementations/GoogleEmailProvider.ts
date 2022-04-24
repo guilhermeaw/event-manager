@@ -1,9 +1,12 @@
 import nodemailer, { Transporter } from 'nodemailer';
+import HandlebarsMailTemplateProvider from 'providers/MailTemplateProvider/implementations/HandlebarsMailTemplateProvider';
 
 import ISendEmailDTO from '../dtos/ISendEmailDTO';
 
 export default class GoogleEmailProvider {
   private client: Transporter;
+
+  private mailTemplateProvider: HandlebarsMailTemplateProvider;
 
   constructor() {
     this.client = nodemailer.createTransport({
@@ -13,6 +16,8 @@ export default class GoogleEmailProvider {
         pass: process.env.GMAIL_PASS,
       },
     });
+
+    this.mailTemplateProvider = new HandlebarsMailTemplateProvider();
   }
 
   public async sendMail({
@@ -34,7 +39,7 @@ export default class GoogleEmailProvider {
         address: to.email,
       },
       subject,
-      html: '<h1>Opa</h1>',
+      html: await this.mailTemplateProvider.parse(templateData),
     });
   }
 }

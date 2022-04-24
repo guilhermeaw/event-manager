@@ -23,7 +23,7 @@ export const SelectUser = (props: SelectUserProps) => {
     >
       {users?.map(user => (
         <MenuItem key={user.id} value={user.id}>
-          {user.name}
+          {user.name || user.email}
         </MenuItem>
       ))}
     </TextField>
