@@ -10,10 +10,15 @@ import {
 import { MainContainer } from '../../components/MainContainer';
 import { SelectEvent } from '../../components/SelectEvent';
 import { SelectUser } from '../../components/SelectUser';
+import { useFetchTodayEvents } from '../../services/queries';
+import { useFetchUsers } from '../../services/queries/useFetchUsers';
 
 const EventCheckinPage = () => {
   const [selectedUser, setSelectedUser] = useState('');
   const [selectedEvent, setElectedEvent] = useState('');
+
+  const fetchTodayEvents = useFetchTodayEvents();
+  const fetchUsers = useFetchUsers();
 
   const handleSubmitEventCheckin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,6 +50,7 @@ const EventCheckinPage = () => {
             <SelectUser
               value={selectedUser}
               onChange={handleSelectUser}
+              query={fetchUsers}
               required
             >
               <MenuItem value="Guilherme">Guilherme</MenuItem>
@@ -59,13 +65,9 @@ const EventCheckinPage = () => {
             <SelectEvent
               value={selectedEvent}
               onChange={handleSelectEvent}
+              query={fetchTodayEvents}
               required
-            >
-              <MenuItem value="TDC Floripa">TDC Floripa</MenuItem>
-              <MenuItem value="Show do Gustavo Lima">
-                Show do Gustavo Lima
-              </MenuItem>
-            </SelectEvent>
+            />
 
             <FormHelperText>
               Selecione o evento que deseja registrar a presença.

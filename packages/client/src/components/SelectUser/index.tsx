@@ -1,7 +1,16 @@
-import { TextField, TextFieldProps } from '@mui/material';
+import { MenuItem, TextField, TextFieldProps } from '@mui/material';
+import { UseQueryResult } from 'react-query';
 
-export const SelectUser = (props: TextFieldProps) => {
-  const { children } = props;
+import { User } from '../../models/User';
+
+type SelectUserProps = TextFieldProps & {
+  query: UseQueryResult<User[], unknown>;
+};
+
+export const SelectUser = (props: SelectUserProps) => {
+  const {
+    query: { data: users },
+  } = props;
 
   return (
     <TextField
@@ -12,7 +21,11 @@ export const SelectUser = (props: TextFieldProps) => {
       sx={{ background: '#fff' }}
       {...props}
     >
-      {children}
+      {users?.map(user => (
+        <MenuItem key={user.id} value={user.name}>
+          {user.name}
+        </MenuItem>
+      ))}
     </TextField>
   );
 };
