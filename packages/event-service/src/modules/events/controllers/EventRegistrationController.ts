@@ -53,7 +53,7 @@ export default class EventRegistrationController {
       templateData: {
         variables: {
           userName: user.name,
-          link: `http://localhost:8080/pre-register/${userToken.token}`,
+          link: `http://localhost:8080/complete-register/${userToken.token}`,
         },
         file: MailTemplateFiles.COMPLETE_REGISTER,
       },
