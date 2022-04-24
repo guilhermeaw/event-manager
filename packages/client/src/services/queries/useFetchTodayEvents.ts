@@ -5,6 +5,8 @@ import api from '../api';
 
 export const useFetchTodayEvents = () => {
   return useQuery('todayEvents', () =>
-    api.get<Event[]>('/events/today-events').then(response => response.data),
+    api
+      .get<Event[]>('/events/events/today-events')
+      .then(response => response.data),
   );
 };

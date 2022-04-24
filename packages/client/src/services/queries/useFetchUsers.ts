@@ -5,6 +5,6 @@ import api from '../api';
 
 export const useFetchUsers = () => {
   return useQuery('users', () =>
-    api.get<User[]>('/users/users').then(response => response.data),
+    api.get<User[]>('/users/users/list-all').then(response => response.data),
   );
 };
