@@ -3,8 +3,12 @@ import { Card, Typography } from '@mui/material';
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { Header } from '../../components/Header';
 import { MainContainer } from '../../components/MainContainer';
+import { Event } from '../../models/Event';
+import { useAuth } from '../../store/Auth/useAuth';
 
 const EventsPage = () => {
+  const { user } = useAuth();
+  console.log(event);
   const nextEvents = [
     {
       id: 1,
@@ -45,7 +49,7 @@ const EventsPage = () => {
 
       <MainContainer>
         <DownloadCertificateButton
-          userName="José Silva"
+          userName={user.name}
           event={nextEvents[0]}
           hash="as56d4sa65dsdsa564da"
         />

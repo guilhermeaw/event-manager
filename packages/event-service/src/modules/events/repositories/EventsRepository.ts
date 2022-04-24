@@ -32,4 +32,12 @@ export default class EventsRepository {
 
     return event;
   }
+
+  public async listNextEvents(id: number): Promise<Event | null> {
+    const event = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    return event;
+  }
 }
