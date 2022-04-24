@@ -1,19 +1,16 @@
 import { ChangeEvent, FormEvent, RefObject, useRef, useState } from 'react';
-import {
-  Button,
-  FormHelperText,
-  Grid,
-  MenuItem,
-  Typography,
-} from '@mui/material';
+import { Button, FormHelperText, Grid, Typography } from '@mui/material';
 
 import { MainContainer } from '../../components/MainContainer';
 import { InputEmail } from '../../components/InputEmail';
 import { SelectEvent } from '../../components/SelectEvent';
+import { useFetchNextEvents } from '../../services/queries';
 
 const EventQuickRegistrationPage = () => {
   const emailInput = useRef(null) as RefObject<HTMLInputElement>;
   const [selectedEvent, setElectedEvent] = useState('');
+
+  const fetchNextEvents = useFetchNextEvents();
 
   const handleSubmitQuickEventRegistration = (
     event: FormEvent<HTMLFormElement>,
@@ -51,13 +48,9 @@ const EventQuickRegistrationPage = () => {
             <SelectEvent
               value={selectedEvent}
               onChange={handleSelectEvent}
+              query={fetchNextEvents}
               required
-            >
-              <MenuItem value="TDC Floripa">TDC Floripa</MenuItem>
-              <MenuItem value="Show do Gustavo Lima">
-                Show do Gustavo Lima
-              </MenuItem>
-            </SelectEvent>
+            />
 
             <FormHelperText>
               Selecione o evento que o usuário deseja se inscrever.
