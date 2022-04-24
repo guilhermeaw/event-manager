@@ -47,7 +47,7 @@ const CompleteRegisterPage = () => {
   return (
     <MainContainer>
       {
-        /* Verificar também o state do user (pre-created) */ user ? (
+        /* Verificar também o state do user (pre-created) e se o token já foi usado */ user ? (
           <>
             <Typography variant="h2">Finalize seu cadastro</Typography>
             <Typography variant="subtitle1">
