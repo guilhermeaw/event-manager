@@ -13,7 +13,7 @@ export default class FindEventService {
 
     try {
       const { data } = await axios.get<IEventDTO>(
-        `http://localhost:3000/api/events/events/${event_id}`,
+        `http://localhost:3000/api/events/events/id/${event_id}`,
       );
 
       event = data;
