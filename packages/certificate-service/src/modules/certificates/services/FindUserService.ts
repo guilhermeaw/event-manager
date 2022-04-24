@@ -13,7 +13,7 @@ export default class FindUserService {
 
     try {
       const { data } = await axios.get<IUserDTO>(
-        `http://localhost:3000/api/users/users/${user_id}`,
+        `http://localhost:3000/api/users/users/id/${user_id}`,
       );
 
       user = data;

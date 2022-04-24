@@ -12,18 +12,18 @@ export default class User {
   id: number;
 
   @Column()
-  name: string;
+  name?: string;
 
   @Column()
   email: string;
 
   @Column()
-  cpf: string;
+  cpf?: string;
 
-  @Column('enum', { enum: UserRole })
+  @Column('enum', { enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
   @Column()
   @Exclude()
-  password: string;
+  password?: string;
 }

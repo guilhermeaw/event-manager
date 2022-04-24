@@ -46,7 +46,8 @@
       {
         "namedComponents": "arrow-function"
       }
-    ]
+    ],
+    "no-shadow": "off"
   },
   "settings": {
     "import/resolver": {

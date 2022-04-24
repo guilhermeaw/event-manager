@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import { Button, Container, Typography, Menu, MenuItem } from '@mui/material';
+=======
+import { Button, Container, Stack, Typography } from '@mui/material';
+>>>>>>> 35e4fb875dd9638ddbb64ebc451892d6c346df99
 import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 
 import { useAuth } from '../../store/Auth';
+import { UserOptionsButton } from './fragments/UserOptionsButton';
 
 import * as S from './styles';
 
@@ -70,9 +75,13 @@ export const Header = () => {
         </Menu>
 
         {user && (
-          <Button variant="contained" onClick={handleLogout}>
-            Logout
-          </Button>
+          <Stack direction="row" spacing={2}>
+            <UserOptionsButton userRole={user.role} />
+
+            <Button variant="contained" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Stack>
         )}
       </Container>
     </S.Header>

@@ -2,7 +2,8 @@ import { FormEvent, RefObject, useRef } from 'react';
 import { Button, Grid, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { RouterLink } from '../../components/Link';
+import { RouterLink } from '../../components/RouterLink';
+import { InputEmail } from '../../components/InputEmail';
 import { useUserCreate } from '../../services/mutations';
 
 import * as S from './styles';
@@ -54,12 +55,10 @@ const SignUpPage = () => {
             required
           />
 
-          <TextField
-            label="E-mail"
-            type="email"
-            sx={{ background: '#fff' }}
-            margin="dense"
+          <InputEmail
             inputRef={emailInput}
+            size="medium"
+            margin="dense"
             required
           />
 

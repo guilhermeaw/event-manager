@@ -1,6 +1,8 @@
-import Event from '@modules/events/entities/Event';
-import EventsRepository from '@modules/events/repositories/EventsRepository';
 import { Timestamp } from 'typeorm';
+
+import EventsRepository from '@modules/events/repositories/EventsRepository';
+import Event from '@modules/events/entities/Event';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -23,7 +25,16 @@ export default class CreateEventService {
     description,
     date,
     duration,
-  }: IRequest): Promise<Omit<Event, 'password'>> {
+  }: IRequest): Promise<Event> {
+    const eventAlreadyExistsWithName = await this.eventsRepository.findByName(
+      name,
+    );
+
+    if (eventAlreadyExistsWithName) {
+      throw new AppError(
+        'Já existe um evento com o mesmo nome, por favor escolha outro nome.',
+      );
+    }
 
     const event = await this.eventsRepository.create({
       name,
