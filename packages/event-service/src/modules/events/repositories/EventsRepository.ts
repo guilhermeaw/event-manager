@@ -34,7 +34,10 @@ export default class EventsRepository {
     return event;
   }
 
-  public async listByDate({ from, to }: IDateIntervalDTO): Promise<Event[]> {
+  public async listByDateInterval({
+    from,
+    to,
+  }: IDateIntervalDTO): Promise<Event[]> {
     const event = await this.ormRepository.find({
       where: { date: Between(from, to) },
     });

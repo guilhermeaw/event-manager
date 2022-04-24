@@ -15,7 +15,7 @@ export default class ListEventsInDayService {
   }
 
   public async execute({ date }: IRequest): Promise<Event[]> {
-    const events = await this.eventsRepository.listByDate({
+    const events = await this.eventsRepository.listByDateInterval({
       from: startOfDay(date),
       to: endOfDay(date),
     });
