@@ -17,4 +17,10 @@ export default class UserTokensRepository {
 
     return userToken;
   }
+
+  public async findByToken(token: string): Promise<UserToken | null> {
+    const userToken = this.ormRepository.findOne({ where: { token } });
+
+    return userToken;
+  }
 }

@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 
 import { UserRole } from '../entities/User';
 import CreateUserService from '../services/CreateUserService';
+import FindUserByTokenService from '../services/FindUserByTokenService';
 import FindUserService from '../services/FindUserService';
 import ListAllUsersService from '../services/ListAllUsersService';
 import PreCreateUserService from '../services/PreCreateUserService';
@@ -37,7 +38,10 @@ export default class UsersController {
     return response.json(instanceToPlain(user));
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async findById(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
     const { id } = request.params;
 
     const idAsNumber = Number(id);
@@ -45,6 +49,17 @@ export default class UsersController {
     const user = await new FindUserService().execute({
       id: idAsNumber,
     });
+
+    return response.json(instanceToPlain(user));
+  }
+
+  public async findByToken(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { token } = request.params;
+
+    const user = await new FindUserByTokenService().execute(token);
 
     return response.json(instanceToPlain(user));
   }
