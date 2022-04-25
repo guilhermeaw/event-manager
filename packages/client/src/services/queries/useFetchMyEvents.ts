@@ -7,8 +7,6 @@ import api from '../api';
 export const useFetchMyEvents = () => {
   const { user } = useAuth();
   const user_id = user.id;
-  console.log("User");
-  console.log(user_id);
 
   return useQuery('myEvent', () =>
     api
