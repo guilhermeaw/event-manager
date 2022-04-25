@@ -12,10 +12,12 @@ export const useCancel = () => {
   return useMutation(
     ({ user_id, event_id, status }: Registration) =>
       api
-        .post('/events/eventsRegistration/delete', {
-          user_id,
-          event_id,
-          status,
+        .delete('/events/eventsRegistration/delete', {
+          data:{
+            user_id,
+            event_id,
+            status,
+          }
         })
         .then(response => response.data),
     {

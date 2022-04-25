@@ -19,6 +19,7 @@ const EventsPage = () => {
   }
 
   const handleCancelRegistration = async (eventId: number) => {
+    console.log({ user_id: user.id, event_id: eventId});
     await cancel({ user_id: user.id, event_id: eventId });
   }
 
