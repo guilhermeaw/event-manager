@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 
+import NamingStrategy from './NamingStrategy';
+
 const AppDataSource = new DataSource({
   name: 'default',
   type: 'postgres',
@@ -11,6 +13,7 @@ const AppDataSource = new DataSource({
   entities: ['src/modules/**/entities/*.ts'],
   migrations: ['src/shared/database/migrations/*.ts'],
   migrationsTableName: 'migrations',
+  namingStrategy: new NamingStrategy(),
 });
 
 export const initializeDataSource = () => {

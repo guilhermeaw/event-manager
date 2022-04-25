@@ -1,5 +1,5 @@
 import { FormEvent, RefObject, useRef } from 'react';
-import { Button, Grid, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { RouterLink } from '../../components/RouterLink';
@@ -10,6 +10,7 @@ import { useUserCreate } from '../../services/mutations';
 import * as S from './styles';
 import { InputPassword } from '../../components/InputPassword';
 import { InputCPF } from '../../components/InputCPF';
+import { AuthContainer } from '../../components/AuthContainer';
 
 const SignUpPage = () => {
   const nameInput = useRef(null) as RefObject<HTMLInputElement>;
@@ -37,57 +38,49 @@ const SignUpPage = () => {
   };
 
   return (
-    <Grid container sx={{ minHeight: '100vh' }}>
-      <Grid item xs={6} />
+    <AuthContainer>
+      <S.Form onSubmit={handleSignUp}>
+        <Typography variant="h1" sx={{ marginBottom: '2rem' }}>
+          Registrar-se
+        </Typography>
 
-      <Grid
-        item
-        xs={6}
-        sx={({ palette }) => ({ background: palette.background.default })}
-      >
-        <S.Form onSubmit={handleSignUp}>
-          <Typography variant="h1" sx={{ marginBottom: '2rem' }}>
-            Registrar-se
-          </Typography>
+        <InputUserName
+          size="medium"
+          margin="dense"
+          inputRef={nameInput}
+          required
+        />
 
-          <InputUserName
-            size="medium"
-            margin="dense"
-            inputRef={nameInput}
-            required
-          />
+        <InputEmail
+          inputRef={emailInput}
+          size="medium"
+          margin="dense"
+          required
+        />
 
-          <InputEmail
-            inputRef={emailInput}
-            size="medium"
-            margin="dense"
-            required
-          />
+        <InputPassword
+          size="medium"
+          margin="dense"
+          inputRef={passwordInput}
+          required
+        />
 
-          <InputPassword
-            size="medium"
-            margin="dense"
-            inputRef={passwordInput}
-            required
-          />
+        <InputCPF size="medium" margin="dense" inputRef={cpfInput} required />
 
-          <InputCPF size="medium" margin="dense" inputRef={cpfInput} required />
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          sx={{ marginTop: '1rem' }}
+        >
+          Registrar
+        </Button>
 
-          <Button
-            type="submit"
-            variant="contained"
-            size="large"
-            sx={{ marginTop: '1rem' }}
-          >
-            Registrar
-          </Button>
-
-          <Button sx={{ marginTop: '1rem' }}>
-            <RouterLink to="/login">Voltar ao login</RouterLink>
-          </Button>
-        </S.Form>
-      </Grid>
-    </Grid>
+        <Button sx={{ marginTop: '1rem' }}>
+          <RouterLink to="/login">Voltar ao login</RouterLink>
+        </Button>
+      </S.Form>
+    </AuthContainer>
   );
 };
 

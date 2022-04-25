@@ -11,6 +11,8 @@ import EventCheckinPage from '../pages/EventCheckin';
 import EventQuickRegistrationPage from '../pages/QuickEventRegistration';
 import CompleteRegisterPage from '../pages/CompleteRegister';
 
+import ValidateCertificatePage from '../pages/ValidateCertificate';
+
 const EventsPage = React.lazy(() => import('../pages/Events'));
 
 export const Routes = () => (
@@ -34,6 +36,11 @@ export const Routes = () => (
         />
 
         <Route path="/dashboard" element={<DashboardPage />} />
+
+        <Route
+          path="/validate-certificate"
+          element={<ValidateCertificatePage />}
+        />
       </RouteList>
     </Suspense>
   </BrowserRouter>

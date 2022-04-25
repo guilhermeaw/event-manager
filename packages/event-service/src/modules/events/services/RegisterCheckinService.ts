@@ -35,7 +35,8 @@ export default class RegisterCheckinService {
     }
 
     return this.eventRegistrationRepository.update({
-      ...existEventRegistration,
+      event_id: existEventRegistration.event_id,
+      user_id: existEventRegistration.user_id,
       status: EventRegistrationStatus.CHECKING,
     });
   }

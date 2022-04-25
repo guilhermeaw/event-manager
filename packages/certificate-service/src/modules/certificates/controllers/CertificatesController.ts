@@ -2,6 +2,7 @@ import { instanceToPlain } from 'class-transformer';
 import { Request, Response } from 'express';
 
 import CreateCertificateService from '../services/CreateCertificateService';
+import FindCertificateByHashService from '../services/FindCertificateByHashService';
 import FindCertificateService from '../services/FindCertificateService';
 import FindEventService from '../services/FindEventService';
 import FindUserService from '../services/FindUserService';
@@ -46,5 +47,16 @@ export default class CertificatesController {
     });
 
     return response.json({ ...instanceToPlain(certificate), event, user });
+  }
+
+  public async findByHash(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { hash } = request.body;
+
+    const certificate = await new FindCertificateByHashService().execute(hash);
+
+    return response.json(certificate);
   }
 }
