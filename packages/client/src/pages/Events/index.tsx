@@ -1,30 +1,26 @@
-import { Card, Typography } from '@mui/material';
+import { Button, Card, Typography } from '@mui/material';
 
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { MainContainer } from '../../components/MainContainer';
 import { useFetchMyEvents, useFetchNextEvents } from '../../services/queries';
+import { useRegister } from '../../services/mutations/useRegister';
+import { useCancel } from '../../services/mutations/useCancel';
+import { useAuth } from '../../store/Auth/useAuth';
 
 const EventsPage = () => {
   const { data: nextEvents } = useFetchNextEvents();
   const { data: myEvents } = useFetchMyEvents();
-  console.log("myEvents");
-  console.log(myEvents);
-  // const myEvents = [
-  //   {
-  //     id: 1,
-  //     title: 'TDC Floripa',
-  //     description: 'Um encontro de devs com muitas palestras',
-  //     img: 'https://cdn.thedevconf.com.br/img/logo/logo-tdc.png',
-  //     duration: 300,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Show do Gustavo Lima',
-  //     description: 'Show nacional do cantor Gustavo Lima',
-  //     img: 'https://s2.glbimg.com/pQPSrWFUJBB1FRTWQGLUbtB9eeA=/0x0:833x794/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/A/c/6PPJpbRn684qOUAx1gVQ/gusttavo-lima.png',
-  //     duration: 60,
-  //   },
-  // ];
+  const { user } = useAuth();
+  const { mutateAsync: register } = useRegister();
+  const { mutateAsync: cancel } = useCancel();
+
+  const handleRegistration = async (eventId: number) => {
+    await register({ user_id: user.id, event_id: eventId });
+  }
+
+  const handleCancelRegistration = async (eventId: number) => {
+    await cancel({ user_id: user.id, event_id: eventId });
+  }
 
   return (
     <MainContainer>
@@ -33,21 +29,28 @@ const EventsPage = () => {
 
       {myEvents?.map(event => (
         <Card key={event.event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-            <Typography>{event.event.name}</Typography>
-            <Typography>{event.event.description}</Typography>
-            {/* <img
-              src={event.img}
-              alt="imagem do evento"
-              height="64px"
-              width="64px"
-            /> */}
-            <div style={{justifyContent:'flex-end', display:'flex'}}>
+          <Typography>{event.event.name}</Typography>
+          <Typography>{event.event.description}</Typography>
+          <img
+            src='https://cdn.thedevconf.com.br/img/logo/logo-tdc.png'
+            alt="imagem do evento"
+            height="64px"
+            width="64px"
+          />
+          <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+            {new Date(event.event.date) < new Date() && event.status == "checking"
+              ?
               <DownloadCertificateButton
-                userName="José"
+                userName={user.name}
                 event={event.event}
                 hash="as56d4sa65dsdsa564da"
               />
-            </div>
+              :
+              <Button variant="contained" onClick={() => handleCancelRegistration(event.event.id)}>
+                Cancelar inscrição
+              </Button>
+            }
+          </div>
         </Card>
       ))}
 
@@ -60,12 +63,18 @@ const EventsPage = () => {
         <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
           <Typography>{event.name}</Typography>
           <Typography>{event.description}</Typography>
-          {/* <img
-            src={imagens}
+          <img
+            src='https://cdn.thedevconf.com.br/img/logo/logo-tdc.png'
             alt="imagem do evento"
             height="64px"
             width="64px"
-          /> */}
+          />
+          <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+            <Button variant="contained" onClick={() => handleRegistration(event.id)}>
+              Inscrever-se no eventos
+            </Button>
+          </div>
+
         </Card>
       ))}
     </MainContainer>

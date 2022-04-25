@@ -5,6 +5,7 @@ import { MailTemplateFiles } from '../dtos/MailTemplateFiles';
 import { Status } from '../entities/EventRegistration';
 import CreateEventRegistrationService from '../services/CreateEventRegistrationService';
 import CreateUserTokenService from '../services/CreateUserTokenService';
+import DeleteEventRegistrationService from '../services/DeleteEventRegistrationService';
 import PreCreateUserService from '../services/PreCreateUserService';
 import SendContinueRegisterEmailService from '../services/SendContinueRegisterEmailService';
 
@@ -20,6 +21,17 @@ export default class EventRegistrationController {
       });
 
     return response.json(instanceToPlain(eventRegistration));
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { user_id, event_id } = request.body;
+
+    await new DeleteEventRegistrationService().execute({
+      user_id,
+      event_id,
+    });
+
+    return response.status(204).json();
   }
 
   public async quickRegistration(

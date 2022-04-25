@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('events')
 export default class Event {
@@ -15,7 +15,7 @@ export default class Event {
   description: string;
 
   @Column({ type: 'timestamp' })
-  date: Timestamp;
+  date: Date;
 
   @Column()
   duration: number;

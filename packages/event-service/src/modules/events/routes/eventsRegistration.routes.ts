@@ -11,5 +11,6 @@ eventRegistrationRouter.post(
   '/quick-registration',
   eventRegistrationController.quickRegistration,
 );
+eventRegistrationRouter.delete('/delete', eventRegistrationController.delete);
 
 export default eventRegistrationRouter;

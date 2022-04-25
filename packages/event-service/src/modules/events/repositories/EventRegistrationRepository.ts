@@ -46,4 +46,13 @@ export default class EventRegistrationRepository {
 
     return events;
   }
+
+  public async delete({
+      event_id,
+      user_id,
+    }: Pick<EventRegistration, 'event_id' | 'user_id'>): Promise<void>{
+    await this.ormRepository.delete({
+      user_id, event_id
+    })
+  }
 }
