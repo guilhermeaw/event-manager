@@ -11,7 +11,7 @@ export default class EventRegistrationRepository {
   }
 
   public async create(
-    eventRegistrationData: EventRegistration,
+    eventRegistrationData: Omit<EventRegistration, 'event'>,
   ): Promise<EventRegistration> {
     const eventRegistration = this.ormRepository.create(eventRegistrationData);
     await this.ormRepository.save(eventRegistration);

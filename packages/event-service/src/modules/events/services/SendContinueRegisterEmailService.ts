@@ -39,6 +39,7 @@ export default class SendContinueRegisterEmailService {
         from,
       });
     } catch (err) {
+      console.error(err);
       throw new AppError('Erro ao enviar e-mail para continuação do cadastro.');
     }
   }

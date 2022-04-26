@@ -1,4 +1,4 @@
-import { Button, Card, Typography } from '@mui/material';
+import { Button, Card, Typography, Stack } from '@mui/material';
 
 import { DownloadCertificateButton } from '../../components/DownloadCertificateButton';
 import { MainContainer } from '../../components/MainContainer';
@@ -28,29 +28,33 @@ const EventsPage = () => {
       <Typography variant="subtitle1">Listagem dos meus eventos</Typography>
 
       {myEvents?.map(event => (
-        <Card key={event.event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-          <Typography>{event.event.name}</Typography>
-          <Typography>{event.event.description}</Typography>
-          <img
-            src='https://cdn.thedevconf.com.br/img/logo/logo-tdc.png'
-            alt="imagem do evento"
-            height="64px"
-            width="64px"
-          />
-          <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
-            {new Date(event.event.date) < new Date() && event.status == "checking"
-              ?
-              <DownloadCertificateButton
-                userName={user.name}
-                event={event.event}
-                hash="as56d4sa65dsdsa564da"
+        <Card key={event.event.id} sx={{ padding: '2rem', margin: '1rem 0', display:'flex' }}>
+          <Stack direction="row" spacing={2} sx={{width: '100%'}}>
+            <div style={{width:'100%'}}>
+              <Typography variant="h3">{event.event.name}</Typography>
+              <Typography>{event.event.description}</Typography>
+              <img
+                src='https://cdn.thedevconf.com.br/img/logo/logo-tdc.png'
+                alt="imagem do evento"
+                height="64px"
+                width="64px"
               />
-              :
-              <Button variant="contained" onClick={() => handleCancelRegistration(event.event.id)}>
-                Cancelar inscrição
-              </Button>
-            }
-          </div>
+            </div>
+            <div style={{justifyContent: 'flex-end', display: 'flex' }}>
+              {new Date(event.event.date) < new Date() && event.status == "checking"
+                ?
+                <DownloadCertificateButton
+                  userName={user.name}
+                  event={event.event}
+                  hash="as56d4sa65dsdsa564da"
+                />
+                :
+                <Button variant="contained" onClick={() => handleCancelRegistration(event.event.id)}>
+                  Cancelar inscrição
+                </Button>
+              }
+            </div>
+          </Stack>
         </Card>
       ))}
 
@@ -61,7 +65,7 @@ const EventsPage = () => {
 
       {nextEvents?.map(event => (
         <Card key={event.id} sx={{ padding: '2rem', margin: '1rem 0' }}>
-          <Typography>{event.name}</Typography>
+          <Typography variant="h3" >{event.name}</Typography>
           <Typography>{event.description}</Typography>
           <img
             src='https://cdn.thedevconf.com.br/img/logo/logo-tdc.png'
@@ -71,7 +75,7 @@ const EventsPage = () => {
           />
           <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
             <Button variant="contained" onClick={() => handleRegistration(event.id)}>
-              Inscrever-se no eventos
+              Inscrever-se no evento
             </Button>
           </div>
 

@@ -1,4 +1,5 @@
 import EventRegistrationRepository from '@modules/events/repositories/EventRegistrationRepository';
+import AppError from '@shared/errors/AppError';
 import { Status } from '../entities/EventRegistration';
 
 interface IRequest {
@@ -19,6 +20,15 @@ export default class CreateEventRegistrationService {
     event_id,
     status
   }: IRequest) {
+
+    const alreadyExistRegistration = await this.eventRegistrationsRepository.findByUserAndEvent({
+      user_id,
+      event_id
+    });
+
+    if (alreadyExistRegistration) {
+      throw new AppError("Usuário já inscrito no evento!");
+    }
 
     const eventRegistration = await this.eventRegistrationsRepository.create({
       user_id,
